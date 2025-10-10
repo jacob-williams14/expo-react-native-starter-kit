@@ -1,0 +1,18 @@
+{
+  "scheme": "acme",
+  "userInterfaceStyle": "automatic",
+  "orientation": "default",
+  "web": {
+    "output": "static"
+  },
+  "plugins": [
+    [
+      "expo-router",
+      {
+        "origin": "https://n"
+      }
+    ]
+  ],
+  "name": "expo-react-native-starter-kit",
+  "slug": "expo-react-native-starter-kit"
+}
