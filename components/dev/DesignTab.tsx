@@ -1,10 +1,10 @@
 import { View } from "react-native";
 
 import { Button } from "~/components/ui/button";
+import { CollapsibleGroup } from "~/components/ui/collapsible";
 import { Input } from "~/components/ui/input";
+import { SelectField } from "~/components/ui/select";
 import { H1, H2, H3, H4, Large, P, Small, Text } from "~/components/ui/text";
-import { CollapsibleGroup } from "../ui/collapsible";
-import { SelectField } from "../ui/select";
 
 export function DesignSystemTab() {
   return (

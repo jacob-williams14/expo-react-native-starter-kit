@@ -1,10 +1,8 @@
-import { Ionicons } from "@expo/vector-icons";
-import React, { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
-export default function ExplorePage() {
-  const [searchQuery, setSearchQuery] = useState("");
+import { Ionicons } from "@expo/vector-icons";
 
+export default function ExplorePage() {
   const categories = [
     {
       id: 1,
@@ -91,7 +89,7 @@ export default function ExplorePage() {
                 activeOpacity={0.8}
               >
                 <Ionicons
-                  name={category.icon as any}
+                  name={category.icon as keyof typeof Ionicons.glyphMap}
                   size={24}
                   color="#ffffff"
                 />
@@ -126,7 +124,7 @@ export default function ExplorePage() {
                   style={{ backgroundColor: `${item.color}15` }}
                 >
                   <Ionicons
-                    name={item.icon as any}
+                    name={item.icon as keyof typeof Ionicons.glyphMap}
                     size={22}
                     color={item.color}
                   />

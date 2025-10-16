@@ -1,9 +1,9 @@
+import Constants from "expo-constants";
 import { View } from "react-native";
 
-import Constants from "expo-constants";
 import { Button } from "~/components/ui/button";
+import { CollapsibleGroup } from "~/components/ui/collapsible";
 import { Large, P, Text } from "~/components/ui/text";
-import { CollapsibleGroup } from "../ui/collapsible";
 
 export function GeneralTab() {
   const version = Constants.expoConfig?.version;

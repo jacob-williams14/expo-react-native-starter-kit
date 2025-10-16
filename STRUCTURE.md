@@ -64,8 +64,8 @@ Use `~/` for imports from project root:
 ```typescript
 import { Button } from "~/components/ui/button";
 import { useThemeColors } from "~/hooks/useThemeColors";
-import { formatCurrency } from "~/lib/utils/format";
 import { COLORS } from "~/lib/constants";
+import { formatCurrency } from "~/lib/utils/format";
 ```
 
 Configuration is in `tsconfig.json`:

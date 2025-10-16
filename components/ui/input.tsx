@@ -3,8 +3,8 @@ import { cva } from "class-variance-authority";
 import * as React from "react";
 import { Platform, TextInput, View } from "react-native";
 
-import { cn } from "~/lib/tailwindUtils";
 import { Small } from "./text";
+import { cn } from "~/lib/tailwindUtils";
 
 const inputVariants = cva(
   "flex w-full min-w-0 flex-row items-center rounded-md border shadow-sm shadow-black/5",

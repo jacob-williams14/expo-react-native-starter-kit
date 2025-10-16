@@ -1,10 +1,10 @@
+import { Check, ChevronDown } from "lucide-react-native";
 import * as React from "react";
 import { Dimensions, ScrollView, TouchableOpacity, View } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 
-import { Check, ChevronDown } from "lucide-react-native";
-import { cn } from "~/lib/tailwindUtils";
 import { Text } from "./text";
+import { cn } from "~/lib/tailwindUtils";
 
 type Option = {
   value: string;

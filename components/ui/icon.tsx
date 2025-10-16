@@ -1,5 +1,6 @@
 import type { LucideIcon, LucideProps } from "lucide-react-native";
 import { cssInterop } from "nativewind";
+
 import { cn } from "~/lib/tailwindUtils";
 
 type IconProps = LucideProps & {
