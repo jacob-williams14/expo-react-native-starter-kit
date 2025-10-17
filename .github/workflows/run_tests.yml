@@ -1,0 +1,27 @@
+# name: Run Tests
+# on:
+#   # Only allow this workflow to be called by other workflows
+#   workflow_call:
+
+# jobs:
+#   test:
+#     name: Run Tests
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+
+#       - name: Setup Node
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 22.x
+#           cache: npm
+
+#       - name: Install dependencies
+#         run: npm ci
+
+#       - name: Run tests
+#         run: npm test
+#         env:
+#           EXPO_PUBLIC_API_ENVIRONMENT: test
+#           EXPO_PUBLIC_APP_VARIANT: development

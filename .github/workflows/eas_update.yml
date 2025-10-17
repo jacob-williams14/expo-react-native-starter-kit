@@ -1,0 +1,74 @@
+# name: EAS Update
+# on:
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     types: [opened, synchronize, reopened]
+
+# concurrency:
+#   group: ${{ github.workflow }}-${{ github.ref }}-update
+#   cancel-in-progress: true
+
+# jobs:
+#   run_tests:
+#     uses: ./.github/workflows/run_tests.yml
+
+#   update_preview:
+#     needs: run_tests
+#     runs-on: ubuntu-latest
+#     permissions:
+#       contents: read
+#       pull-requests: write
+#     steps:
+#       - name: Check for EXPO_TOKEN
+#         run: |
+#           if [ -z "${{ secrets.EXPO_TOKEN }}" ]; then
+#             echo "You must provide an EXPO_TOKEN secret linked to this project's Expo account in this repo's secrets. Learn more: https://docs.expo.dev/eas-update/github-actions"
+#             exit 1
+#           fi
+
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+
+#       - name: Setup Node
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 22.x
+#           cache: npm
+
+#       - name: Setup EAS
+#         uses: expo/expo-github-action@v8
+#         with:
+#           eas-version: latest
+#           token: ${{ secrets.EXPO_TOKEN }}
+
+#       - name: Install dependencies
+#         run: npm ci
+
+#       - name: Determine branch and environment for update
+#         id: set_branch
+#         run: |
+#           if [[ "${{ github.event_name }}" == "push" ]]; then
+#             echo "branch=main" >> $GITHUB_ENV
+#             echo "environment=preview" >> $GITHUB_ENV
+#           else
+#             echo "branch=${{ github.event.pull_request.head.ref }}" >> $GITHUB_ENV
+#             echo "environment=development" >> $GITHUB_ENV
+#           fi
+
+#       - name: Create EAS update
+#         run: |
+#           eas update --auto --branch ${{ env.branch }} --environment ${{ env.environment }}
+
+#           # If this is the main branch, also create updates for dev clients and production
+#           if [[ "${{ github.event_name }}" == "push" ]]; then
+#           # Uncomment this to automate OTA updates for production
+#             # eas update --channel production --auto --environment production
+#             eas update --channel development --auto --environment development
+#           fi
+
+#       - name: Upload sourcemaps to Sentry
+#         run: npx sentry-expo-upload-sourcemaps dist
+#         env:
+#           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}

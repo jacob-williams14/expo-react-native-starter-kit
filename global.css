@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Brand Color - Red (Hero Color) */
+    --primary-900: #7d1f23;
+    --primary-800: #a52930;
+    --primary-700: #ca353f;
+    --primary-600: #e8424d;
+    --primary-500: #fd4f57;
+    --primary-400: #fd7279;
+    --primary-300: #fe959a;
+    --primary-200: #feb8bb;
+    --primary-100: #ffdbdd;
+    --primary-50: #fff5f5;
+
+    /* Secondary Brand Color - Black */
+    --secondary-900: #1a1918;
+    --secondary-800: #2e2b29;
+    --secondary-700: #3d3a37;
+    --secondary-600: #4c4845;
+    --secondary-500: #5e5a56;
+    --secondary-400: #7a7672;
+    --secondary-300: #9a9693;
+    --secondary-200: #bcbab8;
+    --secondary-100: #dededd;
+    --secondary-50: #f5f5f5;
+
+    /* Tertiary Brand Color - Teal */
+    --tertiary-900: #0a5050;
+    --tertiary-800: #0e6e6a;
+    --tertiary-700: #118d87;
+    --tertiary-600: #13aba5;
+    --tertiary-500: #16cbc4;
+    --tertiary-400: #45d5cf;
+    --tertiary-300: #73dfda;
+    --tertiary-200: #a1e9e5;
+    --tertiary-100: #d0f4f2;
+    --tertiary-50: #f0fbfb;
+
+    /* Blue (Secondary Palette) */
+    --blue-900: #1a4a5d;
+    --blue-800: #236178;
+    --blue-700: #2a7a9b;
+    --blue-600: #3295bd;
+    --blue-500: #4cacd4;
+    --blue-400: #6fbddd;
+    --blue-300: #92cee6;
+    --blue-200: #b5dfef;
+    --blue-100: #d8eff7;
+    --blue-50: #f2f9fc;
+
+    /* Purple (Secondary Palette) */
+    --purple-900: #4e2242;
+    --purple-800: #682d58;
+    --purple-700: #86386f;
+    --purple-600: #a5488b;
+    --purple-500: #ba5c9f;
+    --purple-400: #ca7db3;
+    --purple-300: #d99ec7;
+    --purple-200: #e9bedb;
+    --purple-100: #f4dfed;
+    --purple-50: #fbf4f9;
+
+    /* Gold (Secondary Palette) */
+    --gold-900: #6e5129;
+    --gold-800: #936c38;
+    --gold-700: #b88a4e;
+    --gold-600: #dcad66;
+    --gold-500: #e4bf85;
+    --gold-400: #e9cca0;
+    --gold-300: #efd9bb;
+    --gold-200: #f4e6d6;
+    --gold-100: #faf2ea;
+    --gold-50: #fdfbf8;
+
+    /* Neutral Grays */
+    --neutral-900: #1f1f1f;
+    --neutral-800: #3d3d3d;
+    --neutral-700: #595959;
+    --neutral-600: #757575;
+    --neutral-500: #8c8c8c;
+    --neutral-400: #a8a8a8;
+    --neutral-300: #c3c3c3;
+    --neutral-200: #dcdcdc;
+    --neutral-100: #eeeeee;
+    --neutral-50: #f7f7f7;
+
+    /* Base Colors */
+    --base-white: #ffffff;
+    --base-off-white: #f7f7f7;
+    --base-black: #4c4845;
+    --base-red: #fd4f57;
+    --base-teal: #16cbc4;
+
+    /* System Colors - mapping to new color system */
+    --background: var(--base-white);
+    --foreground: var(--secondary-600);
+    --card: var(--neutral-50);
+    --card-foreground: var(--secondary-600);
+    --popover: var(--neutral-50);
+    --popover-foreground: var(--secondary-600);
+    --primary: var(--primary-500);
+    --primary-foreground: var(--base-white);
+    --secondary: var(--tertiary-500);
+    --secondary-foreground: var(--base-white);
+    --muted: var(--neutral-100);
+    --muted-foreground: var(--neutral-700);
+    --accent: var(--tertiary-500);
+    --accent-foreground: var(--base-white);
+    --destructive: var(--primary-500);
+    --destructive-foreground: var(--base-white);
+    --border: var(--neutral-300);
+    --input: var(--neutral-300);
+    --ring: var(--primary-500);
+  }
+
+  .dark:root {
+    /* System Colors - dark mode mapping */
+    --background: var(--secondary-900);
+    --foreground: var(--neutral-50);
+    --card: var(--secondary-800);
+    --card-foreground: var(--neutral-50);
+    --popover: var(--secondary-800);
+    --popover-foreground: var(--neutral-50);
+    --primary: var(--primary-500);
+    --primary-foreground: var(--base-white);
+    --secondary: var(--tertiary-500);
+    --secondary-foreground: var(--base-white);
+    --muted: var(--secondary-700);
+    --muted-foreground: var(--neutral-400);
+    --accent: var(--tertiary-500);
+    --accent-foreground: var(--base-white);
+    --destructive: var(--primary-400);
+    --destructive-foreground: var(--base-white);
+    --border: var(--secondary-700);
+    --input: var(--secondary-700);
+    --ring: var(--primary-500);
+  }
+}

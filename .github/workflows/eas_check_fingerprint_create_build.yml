@@ -1,0 +1,71 @@
+# name: Continuous Deployment (main)
+# on:
+#   push:
+#     branches:
+#       - main
+
+# env:
+#   EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+# concurrency:
+#   group: ${{ github.workflow }}-${{ github.ref }}-build
+#   cancel-in-progress: true
+
+# jobs:
+#   run_tests:
+#     uses: ./.github/workflows/run_tests.yml
+
+#   continuously-deploy:
+#     needs: run_tests
+#     runs-on: ubuntu-latest
+#     permissions:
+#       contents: read
+#       pull-requests: read
+#     steps:
+#       - name: Check for EXPO_TOKEN
+#         run: |
+#           if [ -z "${{ secrets.EXPO_TOKEN }}" ]; then
+#             echo "You must provide an EXPO_TOKEN secret linked to this project's Expo account in this repo's secrets. Learn more: https://docs.expo.dev/eas-update/github-actions"
+#             exit 1
+#           fi
+
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+
+#       - name: Setup Node
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 22.x
+#           cache: npm
+
+#       - name: Install dependencies
+#         run: npm install
+
+#       - name: Setup EAS
+#         uses: expo/expo-github-action@main
+#         with:
+#           eas-version: latest
+#           token: ${{ secrets.EXPO_TOKEN }}
+
+#       - name: Get current staging profile fingerprint info
+#         id: staging-info
+#         uses: expo/expo-github-action/continuous-deploy-fingerprint-info@main
+#         with:
+#           profile: staging
+#           environment: preview
+
+#       - name: Create new builds if needed
+#         run: |
+#           chmod +x ./scripts/eas-build.sh
+#           ./scripts/eas-build.sh
+#         env:
+#           ANDROID_FINGERPRINT: ${{ steps.staging-info.outputs.android-fingerprint }}
+#           IOS_FINGERPRINT: ${{ steps.staging-info.outputs.ios-fingerprint }}
+#           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+
+#       - name: Clean up EAS branches & updates
+#         run: |
+#           chmod +x ./scripts/eas-cleanup.sh
+#           ./scripts/eas-cleanup.sh
+#         env:
+#           GH_TOKEN: ${{ github.token }}
