@@ -1,7 +1,8 @@
-import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { ScrollView, TouchableOpacity, View } from "react-native";
+
+import { Ionicons } from "@expo/vector-icons";
 
 import { DesignSystemTab } from "~/components/dev/DesignTab";
 import { GeneralTab } from "~/components/dev/GeneralTab";

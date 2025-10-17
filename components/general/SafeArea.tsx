@@ -10,7 +10,10 @@
 
 import React from "react";
 import { View, ViewProps } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 interface SafeAreaProps extends ViewProps {
   /**
@@ -45,7 +48,7 @@ interface SafeAreaProps extends ViewProps {
  *   <Text>Content</Text>
  * </SafeArea>
  */
-export function SafeArea({
+export function SafeAreaViewWrapper({
   edges = ["top", "right", "bottom", "left"],
   children,
   ...props
@@ -60,7 +63,6 @@ export function SafeArea({
 /**
  * Alternative: Use View with useSafeAreaInsets hook for more control
  */
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface SafeViewProps extends ViewProps {
   /**
@@ -82,7 +84,7 @@ interface SafeViewProps extends ViewProps {
  *   <Text>Content</Text>
  * </SafeView>
  */
-export function SafeView({
+export function ViewWithSafeAreaInsetsWrapper({
   applyTop = true,
   applyBottom = true,
   applyLeft = true,

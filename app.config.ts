@@ -1,26 +1,52 @@
-import { ConfigContext, ExpoConfig } from "expo/config";
+import { ExpoConfig } from "expo/config";
 
-export default ({ config }: ConfigContext): ExpoConfig => ({
-  ...config,
+export default (): ExpoConfig => ({
   name: "expo-react-native-starter-kit",
   slug: "expo-react-native-starter-kit",
-  scheme: "acme",
+  version: "0.0.0",
+  scheme: undefined,
+  runtimeVersion: {
+    policy: "fingerprint",
+  },
   userInterfaceStyle: "automatic",
   orientation: "default",
   ios: {
     bundleIdentifier: "com.expo.reactnativestarterkit",
+    appleTeamId: undefined,
+    infoPlist: {},
+    // associatedDomains: [],
   },
   android: {
     package: "com.expo.reactnativestarterkit",
+    permissions: [],
+    // intentFilters: [
+    //   {
+    //     action: "VIEW",
+    //     autoVerify: true,
+    //     data: {
+    //       scheme: "https",
+    //     },
+    //     category: ["BROWSABLE", "DEFAULT"],
+    //   },
+    // ],
   },
   web: {
+    bundler: "metro",
     output: "static",
+    favicon: "./assets/images/favicon.png",
   },
   plugins: [
+    "expo-router",
     [
-      "expo-router",
+      "expo-dev-client",
       {
-        origin: "https://n",
+        launchMode: "launcher",
+      },
+    ],
+    [
+      "expo-font",
+      {
+        fonts: [],
       },
     ],
     [
@@ -33,4 +59,13 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       },
     ],
   ],
+  owner: undefined,
+  extra: {
+    router: {
+      origin: false,
+    },
+    eas: {
+      projectId: undefined,
+    },
+  },
 });

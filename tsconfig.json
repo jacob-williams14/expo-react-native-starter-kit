@@ -1,10 +1,48 @@
 {
+  "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "strict": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./*"]
-    }
+      "~/*": [
+        "*"
+      ]
+    },
+    "types": [
+      "react-native",
+      "jest"
+    ],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   },
-  "extends": "expo/tsconfig.base",
-  "include": ["global.d.ts", "**/*.ts", "**/*.tsx", "nativewind-env.d.ts"]
+  "include": [
+    "app/**/*",
+    "components/**/*",
+    "assets/**/*",
+    "utils/**/*",
+    "types/**/*",
+    "services/**/*",
+    "providers/**/*",
+    "mocks/**/*",
+    "hooks/**/*",
+    "lib/**/*",
+    "*.ts",
+    "*.tsx",
+    "nativewind-env.d.ts",
+    "global.d.ts",
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ],
+  "exclude": [
+    "node_modules/**/*",
+    "**/node_modules/*",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js",
+    ".expo",
+    "android",
+    "ios",
+    "dist",
+    "build"
+  ]
 }

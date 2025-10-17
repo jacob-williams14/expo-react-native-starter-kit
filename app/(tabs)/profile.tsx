@@ -1,6 +1,6 @@
-import { Ionicons } from "@expo/vector-icons";
-import React from "react";
 import { ScrollView, View } from "react-native";
+
+import { Ionicons } from "@expo/vector-icons";
 
 import { Button } from "~/components/ui/button";
 import { Text } from "~/components/ui/text";
@@ -76,7 +76,7 @@ export default function ProfilePage() {
                 style={{ backgroundColor: `${stat.color}15` }}
               >
                 <Ionicons
-                  name={stat.icon as any}
+                  name={stat.icon as keyof typeof Ionicons.glyphMap}
                   size={20}
                   color={stat.color}
                 />
@@ -115,7 +115,7 @@ export default function ProfilePage() {
                   style={{ backgroundColor: `${setting.color}15` }}
                 >
                   <Ionicons
-                    name={setting.icon as any}
+                    name={setting.icon as keyof typeof Ionicons.glyphMap}
                     size={20}
                     color={setting.color}
                   />

@@ -13,6 +13,6 @@ Reusable UI components organized by feature/domain.
 Import components using the path alias:
 
 ```tsx
-import { Button } from "~/components/ui/button";
 import { Header } from "~/components/navigation/header";
+import { Button } from "~/components/ui/button";
 ```

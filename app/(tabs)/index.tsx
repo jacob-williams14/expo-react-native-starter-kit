@@ -1,16 +1,17 @@
-import { Ionicons } from "@expo/vector-icons";
 import * as Location from "expo-location";
 import * as Notifications from "expo-notifications";
 import { useRouter } from "expo-router";
-import React from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+
+import { Ionicons } from "@expo/vector-icons";
+
 import { Button } from "~/components/ui/button";
 
 export default function HomePage() {
   const router = useRouter();
 
   const handleAllowLocationAccess = () => {
-    Location.requestForegroundPermissionsAsync().then((status) => {
+    void Location.requestForegroundPermissionsAsync().then((status) => {
       if (status.granted) {
         console.log("Location access granted");
       } else {
@@ -20,7 +21,7 @@ export default function HomePage() {
   };
 
   const handleAllowNotifications = () => {
-    Notifications.requestPermissionsAsync().then((status) => {
+    void Notifications.requestPermissionsAsync().then((status) => {
       if (status.granted) {
         console.log("Notifications access granted");
       } else {
@@ -104,7 +105,7 @@ export default function HomePage() {
             >
               <View className="w-10 h-10 bg-neutral-50 rounded-lg items-center justify-center mr-3">
                 <Ionicons
-                  name={item.icon as any}
+                  name={item.icon as keyof typeof Ionicons.glyphMap}
                   size={20}
                   color={item.color}
                 />
