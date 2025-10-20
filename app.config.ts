@@ -58,6 +58,12 @@ export default (): ExpoConfig => ({
           "expo-react-native-starter-kit needs your location to find stores near you.",
       },
     ],
+    [
+      "@rnmapbox/maps",
+      {
+        RNMapboxMapsDownloadToken: process.env.MAPBOX_DOWNLOADS_TOKEN,
+      },
+    ],
   ],
   owner: undefined,
   extra: {
