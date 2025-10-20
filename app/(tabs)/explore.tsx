@@ -4,6 +4,12 @@ import { StyleSheet, Text, View } from "react-native";
 
 import Mapbox, { Camera, MapView, UserLocation } from "@rnmapbox/maps";
 
+import { LayerControls } from "../../components/map/LayerControls";
+import { LayerLegend } from "../../components/map/LayerLegend";
+import { MapLayer } from "../../components/map/MapLayer";
+import { useMapLayers } from "../../hooks/useMapLayers";
+import { LAYERS, type LayerInfo } from "../../lib/map/layerConfig";
+
 // Set your Mapbox access token here
 // You'll need to get one from https://account.mapbox.com/
 // Add EXPO_PUBLIC_MAPBOX_PUBLIC_TOKEN to your .env file
@@ -18,6 +24,8 @@ export default function ExplorePage() {
     null
   );
   const [hasPermission, setHasPermission] = useState(false);
+  const [hasInitiallyFlown, setHasInitiallyFlown] = useState(false); // Track if we've flown to user location
+  const { activeLayers, toggleLayer, clearLayers } = useMapLayers();
 
   useEffect(() => {
     void (async () => {
@@ -27,6 +35,11 @@ export default function ExplorePage() {
       if (status === "granted") {
         const currentLocation = await Location.getCurrentPositionAsync({});
         setLocation(currentLocation);
+
+        // After 1.5 seconds (after animation), stop flying to user location
+        setTimeout(() => {
+          setHasInitiallyFlown(true);
+        }, 1500);
       }
     })();
   }, []);
@@ -55,23 +68,42 @@ export default function ExplorePage() {
 
   return (
     <View style={styles.page}>
-      <MapView
-        style={styles.map}
-        styleURL="mapbox://styles/glos-mapbox/ckqgzhuf109u418pjzwu72l7c"
-      >
-        {location && (
-          <Camera
-            zoomLevel={14}
-            centerCoordinate={[
-              location.coords.longitude,
-              location.coords.latitude,
-            ]}
-            animationMode="flyTo"
-            animationDuration={1000}
-          />
-        )}
-        {hasPermission && <UserLocation visible={true} />}
-      </MapView>
+      <View style={styles.header}>
+        <LayerControls
+          activeLayers={activeLayers}
+          onToggleLayer={toggleLayer}
+          onClearLayers={clearLayers}
+        />
+      </View>
+
+      <View style={styles.mapContainer}>
+        <MapView
+          style={styles.map}
+          styleURL="mapbox://styles/glos-mapbox/ckqgzhuf109u418pjzwu72l7c"
+        >
+          {location && !hasInitiallyFlown && (
+            <Camera
+              zoomLevel={6}
+              centerCoordinate={[
+                location.coords.longitude,
+                location.coords.latitude,
+              ]}
+              animationMode="flyTo"
+              animationDuration={1000}
+            />
+          )}
+          {hasPermission && <UserLocation visible={true} />}
+
+          {/* Render active layers with contours + directional arrows */}
+          {LAYERS.filter((layer) => activeLayers.has(layer.id)).map(
+            (layer: LayerInfo) => (
+              <MapLayer key={layer.id} layer={layer} />
+            )
+          )}
+        </MapView>
+
+        <LayerLegend activeLayers={activeLayers} />
+      </View>
     </View>
   );
 }
@@ -79,7 +111,17 @@ export default function ExplorePage() {
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-    padding: 16,
+  },
+  header: {
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 8,
+  },
+  mapContainer: {
+    flex: 1,
+    marginHorizontal: 16,
+    marginBottom: 16,
+    position: "relative",
   },
   map: {
     flex: 1,
