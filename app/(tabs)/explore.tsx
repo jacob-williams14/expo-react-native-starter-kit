@@ -1,5 +1,6 @@
 import * as Location from "expo-location";
-import { useEffect, useState } from "react";
+import { LocateFixed } from "lucide-react-native";
+import { useEffect, useRef, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 import Mapbox, { Camera, MapView, UserLocation } from "@rnmapbox/maps";
@@ -7,6 +8,8 @@ import Mapbox, { Camera, MapView, UserLocation } from "@rnmapbox/maps";
 import { LayerControls } from "../../components/map/LayerControls";
 import { LayerLegend } from "../../components/map/LayerLegend";
 import { MapLayer } from "../../components/map/MapLayer";
+import { Button } from "../../components/ui/button";
+import { Icon } from "../../components/ui/icon";
 import { useMapLayers } from "../../hooks/useMapLayers";
 import { LAYERS, type LayerInfo } from "../../lib/map/layerConfig";
 
@@ -26,6 +29,7 @@ export default function ExplorePage() {
   const [hasPermission, setHasPermission] = useState(false);
   const [hasInitiallyFlown, setHasInitiallyFlown] = useState(false); // Track if we've flown to user location
   const { activeLayers, toggleLayer, clearLayers } = useMapLayers();
+  const cameraRef = useRef<Camera>(null);
 
   useEffect(() => {
     void (async () => {
@@ -44,31 +48,57 @@ export default function ExplorePage() {
     })();
   }, []);
 
+  const handleCenterOnUser = async () => {
+    if (!hasPermission) return;
+
+    // Get fresh location
+    const currentLocation = await Location.getCurrentPositionAsync({});
+    setLocation(currentLocation);
+
+    // Fly to user location with zoom
+    if (cameraRef.current) {
+      cameraRef.current.setCamera({
+        centerCoordinate: [
+          currentLocation.coords.longitude,
+          currentLocation.coords.latitude,
+        ],
+        zoomLevel: 10,
+        animationDuration: 1000,
+      });
+    }
+  };
+
   // Show error message if token is not configured
   if (!MAPBOX_TOKEN || !MAPBOX_TOKEN.startsWith("pk.")) {
     return (
-      <View style={styles.errorContainer}>
-        <Text style={styles.errorTitle}>⚠️ Mapbox Token Required</Text>
-        <Text style={styles.errorText}>To use the map, you need to:</Text>
-        <Text style={styles.errorStep}>
+      <View className="flex-1 justify-center items-center p-5 bg-neutral-100">
+        <Text className="text-2xl font-bold mb-5 text-neutral-800">
+          ⚠️ Mapbox Token Required
+        </Text>
+        <Text className="text-base mb-4 text-neutral-600 text-center">
+          To use the map, you need to:
+        </Text>
+        <Text className="text-sm mb-2.5 text-neutral-700 text-left w-full max-w-96 px-2.5">
           1. Get a public token from{"\n"}
           https://account.mapbox.com/
         </Text>
-        <Text style={styles.errorStep}>
+        <Text className="text-sm mb-2.5 text-neutral-700 text-left w-full max-w-96 px-2.5">
           2. Create a .env file in the project root
         </Text>
-        <Text style={styles.errorStep}>
+        <Text className="text-sm mb-2.5 text-neutral-700 text-left w-full max-w-96 px-2.5">
           3. Add:{"\n"}
           EXPO_PUBLIC_MAPBOX_PUBLIC_TOKEN=pk.your_token_here
         </Text>
-        <Text style={styles.errorStep}>4. Restart the development server</Text>
+        <Text className="text-sm mb-2.5 text-neutral-700 text-left w-full max-w-96 px-2.5">
+          4. Restart the development server
+        </Text>
       </View>
     );
   }
 
   return (
-    <View style={styles.page}>
-      <View style={styles.header}>
+    <View className="flex-1">
+      <View className="px-4 pt-4 pb-2">
         <LayerControls
           activeLayers={activeLayers}
           onToggleLayer={toggleLayer}
@@ -76,22 +106,22 @@ export default function ExplorePage() {
         />
       </View>
 
-      <View style={styles.mapContainer}>
+      <View className="flex-1 mx-4 mb-4 relative">
         <MapView
           style={styles.map}
           styleURL="mapbox://styles/glos-mapbox/ckqgzhuf109u418pjzwu72l7c"
         >
-          {location && !hasInitiallyFlown && (
-            <Camera
-              zoomLevel={6}
-              centerCoordinate={[
-                location.coords.longitude,
-                location.coords.latitude,
-              ]}
-              animationMode="flyTo"
-              animationDuration={1000}
-            />
-          )}
+          <Camera
+            ref={cameraRef}
+            zoomLevel={location && !hasInitiallyFlown ? 6 : undefined}
+            centerCoordinate={
+              location && !hasInitiallyFlown
+                ? [location.coords.longitude, location.coords.latitude]
+                : undefined
+            }
+            animationMode={location && !hasInitiallyFlown ? "flyTo" : "none"}
+            animationDuration={1000}
+          />
           {hasPermission && <UserLocation visible={true} />}
 
           {/* Render active layers with contours + directional arrows */}
@@ -103,57 +133,29 @@ export default function ExplorePage() {
         </MapView>
 
         <LayerLegend activeLayers={activeLayers} />
+
+        {/* Center on User Location Button */}
+        {hasPermission && (
+          <View className="absolute bottom-4 right-4 z-10">
+            <Button
+              variant="default"
+              size="icon"
+              onPress={() => void handleCenterOnUser()}
+              className="bg-blue-500 shadow-lg"
+            >
+              <Icon as={LocateFixed} size={24} className="text-white" />
+            </Button>
+          </View>
+        )}
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  page: {
-    flex: 1,
-  },
-  header: {
-    paddingHorizontal: 16,
-    paddingTop: 16,
-    paddingBottom: 8,
-  },
-  mapContainer: {
-    flex: 1,
-    marginHorizontal: 16,
-    marginBottom: 16,
-    position: "relative",
-  },
   map: {
     flex: 1,
     borderRadius: 12,
     overflow: "hidden",
-  },
-  errorContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-    backgroundColor: "#f5f5f5",
-  },
-  errorTitle: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
-    color: "#333",
-  },
-  errorText: {
-    fontSize: 16,
-    marginBottom: 15,
-    color: "#666",
-    textAlign: "center",
-  },
-  errorStep: {
-    fontSize: 14,
-    marginBottom: 10,
-    color: "#444",
-    textAlign: "left",
-    width: "100%",
-    maxWidth: 400,
-    paddingHorizontal: 10,
   },
 });
