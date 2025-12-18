@@ -1,9 +1,9 @@
-import { Check, ChevronDown } from "lucide-react-native";
 import * as React from "react";
 import { Dimensions, ScrollView, TouchableOpacity, View } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 
 import { Text } from "./text";
+import { MaterialCommunityIcons } from "~/lib/icons/material-community-icons";
 import { cn } from "~/lib/tailwindUtils";
 
 type Option = {
@@ -125,7 +125,8 @@ const SelectField = ({
           >
             {value?.label || placeholder}
           </Text>
-          <ChevronDown
+          <MaterialCommunityIcons
+            name="chevron-down"
             size={16}
             aria-hidden={true}
             className="text-neutral-600"
@@ -151,7 +152,11 @@ const SelectField = ({
           >
             <View className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
               {value?.value === item.value && (
-                <Check size={16} strokeWidth={3} className="text-neutral-600" />
+                <MaterialCommunityIcons
+                  name="check"
+                  size={16}
+                  className="text-neutral-600"
+                />
               )}
             </View>
             <Text
@@ -183,4 +188,5 @@ const SelectField = ({
   );
 };
 
-export { SelectField, type Option };
+export { SelectField };
+export type { Option };

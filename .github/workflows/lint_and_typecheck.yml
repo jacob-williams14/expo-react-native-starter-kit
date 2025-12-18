@@ -5,14 +5,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "This workflow is disabled"
-# name: Run Tests
+# name: Lint and Type Check
 # on:
 #   # Only allow this workflow to be called by other workflows
 #   workflow_call:
 
 # jobs:
-#   test:
-#     name: Run Tests
+#   lint-and-typecheck:
+#     name: Lint and Type Check
 #     runs-on: ubuntu-latest
 #     steps:
 #       # TODO: Upgrade checkout action to newer version
@@ -26,11 +26,11 @@ jobs:
 #           node-version: 22.x
 #           cache: npm
 
+#       - name: Lint lockfile
+#         run: npm run lint:lockfile
+
 #       - name: Install dependencies
 #         run: npm run setup
 
-#       - name: Run tests
-#         run: npm run test
-#         env:
-#           EXPO_PUBLIC_API_ENVIRONMENT: development
-#           EXPO_PUBLIC_APP_VARIANT: development
+#       - name: Run lint and type check
+#         run: npm run check

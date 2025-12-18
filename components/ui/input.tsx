@@ -1,7 +1,7 @@
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
 import * as React from "react";
-import { Platform, TextInput, View } from "react-native";
+import { TextInput, View } from "react-native";
 
 import { Small } from "./text";
 import { cn } from "~/lib/tailwindUtils";
@@ -12,9 +12,9 @@ const inputVariants = cva(
     variants: {
       variant: {
         default:
-          "border-input bg-background dark:bg-input/30 text-foreground placeholder:text-muted-foreground focus:border-ring web:focus-visible:outline-none web:focus-visible:ring-2 web:focus-visible:ring-ring web:focus-visible:ring-offset-2 web:transition-[color,box-shadow]",
+          "border-input bg-background dark:bg-input/30 text-foreground placeholder:text-muted-foreground focus:border-ring",
         destructive:
-          "border-2 border-destructive bg-destructive/10 text-destructive placeholder:text-destructive/70 web:focus-visible:ring-destructive/50",
+          "border-2 border-destructive bg-destructive/10 placeholder:text-destructive/70",
       },
       size: {
         default: "h-10 px-3 py-1 text-base leading-5 sm:h-9 md:text-sm",
@@ -72,13 +72,7 @@ const Input = React.forwardRef<
     return (
       <View className={className}>
         {label && (
-          <Small
-            className={cn(
-              labelVariants({ variant }),
-              disabled && "text-muted-foreground opacity-50",
-              labelClassName
-            )}
-          >
+          <Small className={cn(labelVariants({ variant }), labelClassName)}>
             {label}
           </Small>
         )}
@@ -89,17 +83,8 @@ const Input = React.forwardRef<
               variant,
               size,
             }),
-            disabled &&
-              cn(
-                "text-muted-foreground border-muted opacity-50",
-                Platform.select({
-                  web: "cursor-not-allowed pointer-events-none",
-                })
-              ),
-            Platform.select({
-              web: "selection:bg-primary selection:text-primary-foreground",
-              native: "placeholder:text-muted-foreground/50",
-            }),
+            disabled && "bg-neutral-100 text-neutral-500 border-neutral-200",
+            "placeholder:text-muted-foreground/50",
             inputClassName
           )}
           editable={!disabled}

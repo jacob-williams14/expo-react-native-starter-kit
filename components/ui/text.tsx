@@ -1,54 +1,34 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
-import { Platform, Text as RNText, type Role } from "react-native";
+import { Text as RNText, type Role } from "react-native";
 
 import * as Slot from "@rn-primitives/slot";
 
 import { cn } from "~/lib/tailwindUtils";
 
-const textVariants = cva(
-  cn(
-    "text-foreground",
-    Platform.select({
-      web: "select-text",
-    })
-  ),
-  {
-    variants: {
-      variant: {
-        default: "text-base",
-        h1: cn(
-          "text-4xl font-bold tracking-tight lg:text-5xl",
-          Platform.select({ web: "scroll-m-20" })
-        ),
-        h2: cn(
-          "pb-2 text-3xl font-bold tracking-tight first:mt-0",
-          Platform.select({ web: "scroll-m-20" })
-        ),
-        h3: cn(
-          "text-2xl font-bold tracking-tight",
-          Platform.select({ web: "scroll-m-20" })
-        ),
-        h4: cn(
-          "text-xl font-bold tracking-tight",
-          Platform.select({ web: "scroll-m-20" })
-        ),
-        p: "text-lg",
-        blockquote: "mt-4 border-l-2 pl-3 italic sm:mt-6 sm:pl-6",
-        code: cn(
-          "bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold"
-        ),
-        lead: "text-muted-foreground text-xl",
-        large: "text-lg font-medium",
-        small: "text-base font-medium",
-        muted: "text-muted-foreground text-sm",
-      },
+const textVariants = cva(cn("text-foreground"), {
+  variants: {
+    variant: {
+      default: "text-base",
+      h1: cn("text-4xl font-bold tracking-tight lg:text-5xl"),
+      h2: cn("text-3xl font-bold tracking-tight first:mt-0"),
+      h3: cn("text-2xl font-bold tracking-tight"),
+      h4: cn("text-xl font-bold tracking-tight"),
+      p: "text-lg",
+      blockquote: "mt-4 border-l-2 pl-3 italic sm:mt-6 sm:pl-6",
+      code: cn(
+        "bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold"
+      ),
+      lead: "text-muted-foreground text-xl",
+      large: "text-lg font-medium",
+      small: "text-base font-medium",
+      muted: "text-muted-foreground text-sm",
     },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
 
 type TextVariantProps = VariantProps<typeof textVariants>;
 
@@ -59,8 +39,6 @@ const ROLE: Partial<Record<TextVariant, Role>> = {
   h2: "heading",
   h3: "heading",
   h4: "heading",
-  blockquote: Platform.select({ web: "blockquote" as Role }),
-  code: Platform.select({ web: "code" as Role }),
 };
 
 const ARIA_LEVEL: Partial<Record<TextVariant, string>> = {

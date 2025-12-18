@@ -3,7 +3,7 @@
 # Check if platform argument is provided
 if [ -z "$1" ]; then
     echo "Error: Platform argument is required"
-    echo "Usage: npm run build:preview ios|android"
+    echo "Usage: npm run submit:dev ios|android"
     exit 1
 fi
 
@@ -18,9 +18,10 @@ fi
 
 # Handle platform-specific logic
 if [ "$PLATFORM" == "ios" ]; then
-    echo "Building for iOS (preview)..."
-    eas build -p ios --profile preview
+    echo "Submitting for iOS (dev)..."
+    eas submit -p ios --profile dev
 elif [ "$PLATFORM" == "android" ]; then
-    echo "Building for Android (preview)..."
-    eas build -p android --profile preview
-fi 
+    echo "Error: Android dev submissions are not yet automated"
+    echo "Manual installation on physical device required for Android development builds"
+    exit 1
+fi

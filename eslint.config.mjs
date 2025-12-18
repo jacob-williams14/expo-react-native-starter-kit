@@ -31,6 +31,7 @@ export default [
       "**/*.cjs",
       "eslint.config.mjs",
       "index.js",
+      "scripts/**/*.js",
     ],
   },
   {
@@ -57,7 +58,11 @@ export default [
       ...tseslint.configs["eslint-recommended"].rules,
       ...tseslint.configs.recommended.rules,
       ...pluginA11y.configs.recommended.rules,
+
+      // Import rules
       "import/no-duplicates": "error",
+
+      // TypeScript rules
       "@typescript-eslint/no-unused-vars": "warn",
       "@typescript-eslint/no-floating-promises": [
         "error",
@@ -68,9 +73,21 @@ export default [
       "react/react-in-jsx-scope": "off",
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
+
+      // React Native rules
+      "react-native/no-unused-styles": "error",
+      "react-native/no-color-literals": "warn",
+
       "no-restricted-imports": [
         "error",
         {
+          patterns: [
+            {
+              group: ["../*"],
+              message:
+                "Relative imports with '../' are not allowed. Use absolute imports with '~/' alias instead (e.g., '~/components/...').",
+            },
+          ],
           paths: [
             {
               name: "react-native-gesture-handler",

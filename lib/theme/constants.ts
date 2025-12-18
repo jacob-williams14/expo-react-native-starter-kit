@@ -53,6 +53,10 @@ export const COLORS = {
     800: "#262626",
     900: "#171717",
   },
+  base: {
+    white: "#FFFFFF",
+    black: "#000000",
+  },
 };
 
 export const SPACING = {
@@ -82,3 +86,27 @@ export const BORDER_RADIUS = {
   xl: 24,
   full: 9999,
 };
+
+// Navigation theme using color palette
+export const NAV_THEME = {
+  light: {
+    background: COLORS.base.white,
+    border: COLORS.neutral[200],
+    card: COLORS.base.white,
+    notification: COLORS.primary[500],
+    primary: COLORS.primary[500],
+    secondary: COLORS.secondary[500],
+    text: COLORS.primary[600],
+    interaction: COLORS.secondary[900],
+  },
+  dark: {
+    background: COLORS.neutral[900],
+    border: COLORS.neutral[800],
+    card: COLORS.neutral[900],
+    notification: COLORS.primary[600],
+    primary: COLORS.primary[500],
+    secondary: COLORS.secondary[500],
+    text: COLORS.neutral[50],
+    interaction: COLORS.secondary[900],
+  },
+} as const;
