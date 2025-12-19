@@ -31,7 +31,7 @@ export default function HomePage() {
   };
 
   return (
-    <ScrollView className="flex-1 bg-neutral-50">
+    <ScrollView className="flex-1">
       <View className="px-5 py-6">
         {/* Welcome Section */}
         <View className="bg-primary-500 rounded-2xl p-6 mb-5">

@@ -1,31 +1,34 @@
 import { Tabs } from "expo-router";
+import { Platform } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { Ionicons } from "@expo/vector-icons";
 
-import "../../global.css";
+import "~/global.css";
+
+import { BottomTabHeaderProps } from "@react-navigation/bottom-tabs";
+
+import { Header } from "~/components/navigation/HeaderButton";
+import HeaderNav from "~/components/navigation/HeaderNav";
+import { COLORS } from "~/lib/theme/constants";
 
 export default function Layout() {
+  const isAndroid = Platform.OS === "android";
+  const insets = useSafeAreaInsets();
   return (
     <Tabs
+      backBehavior="none"
       screenOptions={{
-        headerShown: true,
-        headerStyle: {
-          backgroundColor: "#fd4f57", // primary-500
-        },
-        headerTintColor: "#ffffff",
-        headerTitleStyle: {
-          fontWeight: "bold",
-          fontSize: 18,
-        },
-        tabBarActiveTintColor: "#fd4f57", // primary-500
-        tabBarInactiveTintColor: "#9a9693", // secondary-300
+        header: (props: BottomTabHeaderProps) => <HeaderNav {...props} />,
+        tabBarActiveTintColor: COLORS.primary[500],
+        tabBarInactiveTintColor: COLORS.secondary[300],
         tabBarStyle: {
-          backgroundColor: "#ffffff",
-          borderTopColor: "#c3c3c3", // neutral-300
+          backgroundColor: COLORS.base.white,
+          borderTopColor: COLORS.neutral[300],
           borderTopWidth: 1,
-          paddingBottom: 16,
-          paddingTop: 8,
-          height: 73,
+          paddingBottom: isAndroid ? insets.bottom : 0,
+          paddingTop: 10,
+          height: isAndroid ? 70 + insets.bottom : 90,
         },
         tabBarLabelStyle: {
           fontSize: 12,
@@ -38,6 +41,7 @@ export default function Layout() {
         options={{
           title: "Home",
           headerTitle: "Home",
+          headerLeft: () => <Header.Profile />,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "home" : "home-outline"}

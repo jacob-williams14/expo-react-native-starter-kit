@@ -4,8 +4,10 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { Button } from "~/components/ui/button";
 import { Text } from "~/components/ui/text";
+import { useAuth } from "~/lib/contexts/AuthContext";
 
 export default function ProfilePage() {
+  const { signOut, user } = useAuth();
   const stats = [
     { label: "Projects", value: "12", icon: "folder-open", color: "#fd4f57" },
     {
@@ -53,9 +55,11 @@ export default function ProfilePage() {
           <View className="w-24 h-24 bg-white rounded-full items-center justify-center mb-3">
             <Ionicons name="person" size={48} color="#fd4f57" />
           </View>
-          <Text className="text-xl font-bold text-white mb-1">John Doe</Text>
+          <Text className="text-xl font-bold text-white mb-1">
+            {user?.name || "Guest User"}
+          </Text>
           <Text className="text-sm text-white/90 mb-3">
-            john.doe@example.com
+            {user?.email || "guest@example.com"}
           </Text>
           <View className="bg-white/20 px-4 py-1.5 rounded-full">
             <Text className="text-white text-sm font-semibold">
@@ -133,6 +137,7 @@ export default function ProfilePage() {
         <Button
           variant="default"
           className="bg-primary-500 rounded-xl p-4 flex-row items-center justify-center mb-5"
+          onPress={() => void signOut()}
         >
           <Ionicons name="log-out-outline" size={20} color="#ffffff" />
           <Text className="text-white font-bold text-base ml-2">Logout</Text>
