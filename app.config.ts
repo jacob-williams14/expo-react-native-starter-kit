@@ -1,24 +1,69 @@
 import { ExpoConfig } from "expo/config";
 
+const APP_VARIANT = process.env.EXPO_PUBLIC_APP_VARIANT;
+
+// Centralized variant configuration mapping
+const VARIANT_CONFIG = {
+  development: {
+    bundleName: "React Native Starter Kit (Dev)",
+    bundleIdentifier: "com.jwill.reactnativestarterkit.dev",
+    packageName: "com.jwill.exporeactnativestarterkit.app.dev",
+    scheme: "jwillstarterkitdev",
+  },
+  staging: {
+    bundleName: "React Native Starter Kit (Staging)",
+    bundleIdentifier: "com.jwill.reactnativestarterkit",
+    packageName: "com.jwill.exporeactnativestarterkit.app",
+    scheme: "jwillstarterkit",
+  },
+} as const;
+
+// Helper function to get configuration for current variant
+function getVariantConfig(
+  key: "bundleName" | "bundleIdentifier" | "packageName" | "scheme"
+): string | undefined {
+  return VARIANT_CONFIG[APP_VARIANT as keyof typeof VARIANT_CONFIG]?.[key];
+}
+
+// Clean constant accessors
+const bundleName = getVariantConfig("bundleName");
+const bundleIdentifier = getVariantConfig("bundleIdentifier");
+const packageName = getVariantConfig("packageName");
+const scheme = getVariantConfig("scheme");
+
 export default (): ExpoConfig => ({
-  name: "expo-react-native-starter-kit",
+  name: bundleName ?? "expo-react-native-starter-kit",
   slug: "expo-react-native-starter-kit",
   version: "0.0.0",
-  scheme: undefined,
+  scheme,
   runtimeVersion: {
     policy: "fingerprint",
   },
+  platforms: ["ios", "android"],
   userInterfaceStyle: "automatic",
-  orientation: "default",
+  orientation: "portrait",
+  splash: {
+    image: "./assets/images/trans_cream.png",
+    resizeMode: "contain",
+    backgroundColor: "#8ba898",
+  },
   ios: {
-    bundleIdentifier: "com.expo.reactnativestarterkit",
+    bundleIdentifier,
     appleTeamId: undefined,
     infoPlist: {},
+    icon: {
+      light: "./assets/images/cream_sage.png",
+      dark: "./assets/images/sage_cream.png",
+    },
     // associatedDomains: [],
   },
   android: {
-    package: "com.expo.reactnativestarterkit",
+    package: packageName,
     permissions: [],
+    adaptiveIcon: {
+      foregroundImage: "./assets/images/trans_cream.png",
+      backgroundColor: "#8ba898",
+    },
     // intentFilters: [
     //   {
     //     action: "VIEW",
@@ -29,11 +74,6 @@ export default (): ExpoConfig => ({
     //     category: ["BROWSABLE", "DEFAULT"],
     //   },
     // ],
-  },
-  web: {
-    bundler: "metro",
-    output: "static",
-    favicon: "./assets/images/favicon.png",
   },
   plugins: [
     "expo-router",
@@ -46,7 +86,7 @@ export default (): ExpoConfig => ({
     [
       "expo-font",
       {
-        fonts: [],
+        fonts: ["./assets/fonts/Inter-Variable.ttf"],
       },
     ],
     [
@@ -58,6 +98,21 @@ export default (): ExpoConfig => ({
           "expo-react-native-starter-kit needs your location to find stores near you.",
       },
     ],
+    [
+      "react-native-edge-to-edge",
+      {
+        android: {
+          parentTheme: "Default",
+          enforceNavigationBarContrast: false,
+        },
+      },
+    ],
+    [
+      "expo-secure-store",
+      {
+        configureAndroidBackup: true,
+      },
+    ],
   ],
   owner: undefined,
   extra: {
@@ -67,5 +122,8 @@ export default (): ExpoConfig => ({
     eas: {
       projectId: undefined,
     },
+  },
+  updates: {
+    url: "https://u.expo.dev/YOUR_PROJECT_ID",
   },
 });

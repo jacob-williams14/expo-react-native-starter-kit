@@ -18,11 +18,14 @@ jobs:
 #   cancel-in-progress: true
 
 # jobs:
+#   lint_and_typecheck:
+#     uses: ./.github/workflows/lint_and_typecheck.yml
+
 #   run_tests:
 #     uses: ./.github/workflows/run_tests.yml
 
 #   update_preview:
-#     needs: run_tests
+#     needs: [lint_and_typecheck, run_tests]
 #     runs-on: ubuntu-latest
 #     permissions:
 #       contents: read
@@ -35,23 +38,28 @@ jobs:
 #             exit 1
 #           fi
 
+#       # TODO: Upgrade checkout action to newer version
 #       - name: Checkout repository
 #         uses: actions/checkout@v4
 
+#       # TODO: Upgrade setup action to newer version
 #       - name: Setup Node
 #         uses: actions/setup-node@v4
 #         with:
 #           node-version: 22.x
 #           cache: npm
 
+#       # Currently, using the latest eas-version has been failing due to a recent change in eas-cli.
+#       # TODO: When it is stable again, switch back to using the latest version.
 #       - name: Setup EAS
-#         uses: expo/expo-github-action@v8
+#         uses: expo/expo-github-action@main
 #         with:
-#           eas-version: latest
+#           # eas-version: latest
+#           eas-version: 16.20.1
 #           token: ${{ secrets.EXPO_TOKEN }}
 
 #       - name: Install dependencies
-#         run: npm ci
+#         run: npm run setup
 
 #       - name: Determine branch and environment for update
 #         id: set_branch
@@ -66,16 +74,11 @@ jobs:
 
 #       - name: Create EAS update
 #         run: |
-#           eas update --auto --branch ${{ env.branch }} --environment ${{ env.environment }}
+#           eas update --auto --branch ${{ env.branch }} --environment ${{ env.environment }} -p android
+#           eas update --auto --branch ${{ env.branch }} --environment ${{ env.environment }} -p ios
 
-#           # If this is the main branch, also create updates for dev clients and production
+#           # If this is the main branch, also create updates for dev clients
 #           if [[ "${{ github.event_name }}" == "push" ]]; then
-#           # Uncomment this to automate OTA updates for production
-#             # eas update --channel production --auto --environment production
-#             eas update --channel development --auto --environment development
+#             eas update --channel development --auto --environment development -p android
+#             eas update --channel development --auto --environment development -p ios
 #           fi
-
-#       - name: Upload sourcemaps to Sentry
-#         run: npx sentry-expo-upload-sourcemaps dist
-#         env:
-#           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}

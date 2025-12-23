@@ -1,15 +1,14 @@
 import Constants from "expo-constants";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 
-import { Button } from "~/components/ui/button";
-import { CollapsibleGroup } from "~/components/ui/collapsible";
-import { Large, P, Text } from "~/components/ui/text";
+import { AuthDebugTools } from "./AuthDebugTools";
+import { CollapsibleGroup, Large, P } from "~/components/ui";
 
 export function GeneralTab() {
   const version = Constants.expoConfig?.version;
+
   return (
-    <View className="gap-4 pt-4">
-      {/* App Info Collapsible */}
+    <ScrollView className="flex-1" contentContainerClassName="gap-4 p-6">
       <CollapsibleGroup title="App Information" contentClassName="gap-3">
         <View className="flex-row justify-between">
           <P className="text-neutral-600">Version</P>
@@ -29,21 +28,9 @@ export function GeneralTab() {
         </View>
       </CollapsibleGroup>
 
-      {/* Debug Actions Collapsible */}
-      <CollapsibleGroup title="Debug Actions" contentClassName="gap-3">
-        <Button variant="outline">
-          <Text>Clear Tokens</Text>
-        </Button>
-        <Button variant="outline">
-          <Text>Test API Request</Text>
-        </Button>
-        <Button variant="outline">
-          <Text>Expire Auth Token</Text>
-        </Button>
-        <Button variant="destructive">
-          <Text>Expire Refresh Token</Text>
-        </Button>
+      <CollapsibleGroup title="Auth Debug Tools" contentClassName="gap-3">
+        <AuthDebugTools />
       </CollapsibleGroup>
-    </View>
+    </ScrollView>
   );
 }

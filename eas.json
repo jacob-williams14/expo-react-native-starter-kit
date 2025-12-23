@@ -1,0 +1,47 @@
+{
+  "cli": {
+    "version": ">= 14.5.0",
+    "appVersionSource": "remote",
+    "promptToConfigurePushNotifications": false
+  },
+  "build": {
+    "artifact": {
+      "environment": "development",
+      "developmentClient": true,
+      "channel": "development",
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "dev": {
+      "environment": "development",
+      "developmentClient": true,
+      "channel": "development",
+      "distribution": "store",
+      "android": {
+        "buildType": "apk"
+      },
+      "autoIncrement": true
+    },
+    "staging": {
+      "environment": "preview",
+      "channel": "staging",
+      "distribution": "store",
+      "android": {
+        "buildType": "app-bundle"
+      },
+      "autoIncrement": true
+    },
+    "production": {
+      "environment": "production",
+      "channel": "production",
+      "distribution": "store",
+      "android": {
+        "buildType": "app-bundle"
+      },
+      "autoIncrement": true
+    }
+  },
+  "submit": {}
+}

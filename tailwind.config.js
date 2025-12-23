@@ -152,6 +152,9 @@ export const theme = {
         foreground: "var(--card-foreground)",
       },
     },
+    fontFamily: {
+      sans: ["Inter", "system-ui", "sans-serif"],
+    },
     borderWidth: {
       hairline: hairlineWidth(),
     },

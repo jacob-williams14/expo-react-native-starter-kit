@@ -4,14 +4,9 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "*"
-      ]
+      "~/*": ["*"]
     },
-    "types": [
-      "react-native",
-      "jest"
-    ],
+    "types": ["react-native", "jest"],
     "jsx": "react-jsx",
     "jsxImportSource": "react"
   },
@@ -24,6 +19,7 @@
     "services/**/*",
     "providers/**/*",
     "mocks/**/*",
+    "test-utils/**/*",
     "hooks/**/*",
     "lib/**/*",
     "*.ts",
@@ -31,7 +27,8 @@
     "nativewind-env.d.ts",
     "global.d.ts",
     "**/*.test.ts",
-    "**/*.test.tsx"
+    "**/*.test.tsx",
+    "services"
   ],
   "exclude": [
     "node_modules/**/*",

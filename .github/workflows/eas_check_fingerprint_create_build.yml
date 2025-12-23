@@ -19,11 +19,14 @@ jobs:
 #   cancel-in-progress: true
 
 # jobs:
+#   lint_and_typecheck:
+#     uses: ./.github/workflows/lint_and_typecheck.yml
+
 #   run_tests:
 #     uses: ./.github/workflows/run_tests.yml
 
 #   continuously-deploy:
-#     needs: run_tests
+#     needs: [lint_and_typecheck, run_tests]
 #     runs-on: ubuntu-latest
 #     permissions:
 #       contents: read
@@ -36,24 +39,31 @@ jobs:
 #             exit 1
 #           fi
 
+#       # TODO: Upgrade checkout action to newer version
 #       - name: Checkout repository
 #         uses: actions/checkout@v4
 
+#       # TODO: Upgrade setup action to newer version
 #       - name: Setup Node
 #         uses: actions/setup-node@v3
 #         with:
 #           node-version: 22.x
 #           cache: npm
 
-#       - name: Install dependencies
-#         run: npm install
-
+#       # Currently, using the latest eas-version has been failing due to a recent change in eas-cli.
+#       # TODO: When it is stable again, switch back to using the latest version.
 #       - name: Setup EAS
 #         uses: expo/expo-github-action@main
 #         with:
-#           eas-version: latest
+#           # eas-version: latest
+#           eas-version: 16.20.1
 #           token: ${{ secrets.EXPO_TOKEN }}
 
+#       - name: Install dependencies
+#         run: npm run setup
+
+#       # Technically this is an experimental feature, but it's been working well for us
+#       # Source: https://github.com/expo/expo-github-action/tree/main/continuous-deploy-fingerprint-info
 #       - name: Get current staging profile fingerprint info
 #         id: staging-info
 #         uses: expo/expo-github-action/continuous-deploy-fingerprint-info@main
@@ -68,7 +78,6 @@ jobs:
 #         env:
 #           ANDROID_FINGERPRINT: ${{ steps.staging-info.outputs.android-fingerprint }}
 #           IOS_FINGERPRINT: ${{ steps.staging-info.outputs.ios-fingerprint }}
-#           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
 #       - name: Clean up EAS branches & updates
 #         run: |

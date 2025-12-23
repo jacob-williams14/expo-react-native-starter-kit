@@ -1,34 +1,31 @@
-name: Disabled Workflow
-on: workflow_dispatch
+name: Run Tests
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  # Also allow this workflow to be called by other workflows
+  workflow_call:
+
 jobs:
-  disabled:
+  test:
+    name: Run Tests
     runs-on: ubuntu-latest
     steps:
-      - run: echo "This workflow is disabled"
-# name: Run Tests
-# on:
-#   # Only allow this workflow to be called by other workflows
-#   workflow_call:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-# jobs:
-#   test:
-#     name: Run Tests
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: npm
 
-#       - name: Setup Node
-#         uses: actions/setup-node@v4
-#         with:
-#           node-version: 22.x
-#           cache: npm
+      - name: Install dependencies
+        run: npm run setup
 
-#       - name: Install dependencies
-#         run: npm ci
-
-#       - name: Run tests
-#         run: npm test
-#         env:
-#           EXPO_PUBLIC_API_ENVIRONMENT: test
-#           EXPO_PUBLIC_APP_VARIANT: development
+      - name: Run tests
+        run: npm run test
+        env:
+          EXPO_PUBLIC_API_ENVIRONMENT: development
+          EXPO_PUBLIC_APP_VARIANT: development

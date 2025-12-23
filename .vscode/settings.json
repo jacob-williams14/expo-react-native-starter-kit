@@ -20,5 +20,5 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.words": ["Nativewind", "Pressable"]
+  "cSpell.words": ["Nativewind", "Pressable", "zustand", "tanstack", "prefetch"]
 }
