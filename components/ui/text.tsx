@@ -6,7 +6,7 @@ import * as Slot from "@rn-primitives/slot";
 
 import { cn } from "~/lib/tailwindUtils";
 
-const textVariants = cva(cn("text-foreground"), {
+const textVariants = cva(cn("text-foreground font-sans"), {
   variants: {
     variant: {
       default: "text-base",

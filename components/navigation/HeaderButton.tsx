@@ -1,6 +1,7 @@
 import { useRouter } from "expo-router";
 
 import IconButton from "~/components/general/iconButton";
+import { useColorScheme } from "~/hooks/useColorScheme";
 import { config } from "~/lib/config";
 
 /**
@@ -61,8 +62,25 @@ const Search = () => {
   );
 };
 
+const ThemeToggle = () => {
+  const { isDarkColorScheme, toggleColorScheme } = useColorScheme();
+
+  return (
+    <IconButton
+      iconName={isDarkColorScheme ? "weather-sunny" : "weather-night"}
+      iconSize={24}
+      iconClassName="text-primary-500"
+      onPress={toggleColorScheme}
+      accessibilityRole="button"
+      accessibilityLabel={`Switch to ${isDarkColorScheme ? "light" : "dark"} mode`}
+      accessibilityHint="Toggle between light and dark theme"
+    />
+  );
+};
+
 export const Header = {
   Back,
   Profile,
   Search,
+  ThemeToggle,
 };

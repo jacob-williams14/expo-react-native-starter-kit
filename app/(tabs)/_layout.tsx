@@ -10,21 +10,25 @@ import { BottomTabHeaderProps } from "@react-navigation/bottom-tabs";
 
 import { Header } from "~/components/navigation/HeaderButton";
 import HeaderNav from "~/components/navigation/HeaderNav";
+import { useThemeColors } from "~/hooks/useThemeColors";
 import { COLORS } from "~/lib/theme/constants";
 
 export default function Layout() {
   const isAndroid = Platform.OS === "android";
   const insets = useSafeAreaInsets();
+  const colors = useThemeColors();
+
   return (
     <Tabs
       backBehavior="none"
       screenOptions={{
         header: (props: BottomTabHeaderProps) => <HeaderNav {...props} />,
+        headerShadowVisible: false,
         tabBarActiveTintColor: COLORS.primary[500],
-        tabBarInactiveTintColor: COLORS.secondary[300],
+        tabBarInactiveTintColor: colors.text,
         tabBarStyle: {
-          backgroundColor: COLORS.base.white,
-          borderTopColor: COLORS.neutral[300],
+          backgroundColor: colors.background,
+          borderTopColor: colors.border,
           borderTopWidth: 1,
           paddingBottom: isAndroid ? insets.bottom : 0,
           paddingTop: 10,
@@ -33,18 +37,21 @@ export default function Layout() {
         tabBarLabelStyle: {
           fontSize: 12,
           fontWeight: "600",
+          fontFamily: "Inter",
         },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
-          headerTitle: "Home",
+          title: "Get Started",
+          headerTitle: "Get Started",
           headerLeft: () => <Header.Profile />,
+          headerRight: () => <Header.ThemeToggle />,
+          headerShadowVisible: false,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
-              name={focused ? "home" : "home-outline"}
+              name={focused ? "rocket" : "rocket-outline"}
               size={24}
               color={color}
             />
@@ -54,25 +61,12 @@ export default function Layout() {
       <Tabs.Screen
         name="explore"
         options={{
-          title: "Explore",
-          headerTitle: "Explore",
+          title: "Toolkit",
+          headerTitle: "Toolkit",
+          headerShadowVisible: false,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
-              name={focused ? "compass" : "compass-outline"}
-              size={24}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          title: "Profile",
-          headerTitle: "Profile",
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons
-              name={focused ? "person" : "person-outline"}
+              name={focused ? "construct" : "construct-outline"}
               size={24}
               color={color}
             />

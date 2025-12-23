@@ -1,6 +1,6 @@
 import { http, HttpResponse } from "msw";
-import { config } from "~/lib/config";
 
+import { config } from "~/lib/config";
 import { getMockUser } from "~/mocks/data/user";
 
 export const userHandlers = [

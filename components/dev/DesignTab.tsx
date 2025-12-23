@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { SheetManager } from "react-native-actions-sheet";
 import { ScrollView, View } from "react-native";
 
 import {
@@ -406,6 +407,19 @@ export function DesignSystemTab() {
             defaultValue="x"
             variant="filled"
           />
+        </View>
+      </CollapsibleGroup>
+
+      <CollapsibleGroup title="Action Sheets" contentClassName="gap-4">
+        <View className="gap-1">
+          <Small className="text-neutral-500">Bottom Sheet</Small>
+          <Button
+            onPress={() => {
+              void SheetManager.show("example-sheet");
+            }}
+          >
+            <Text>Open Action Sheet</Text>
+          </Button>
         </View>
       </CollapsibleGroup>
     </ScrollView>

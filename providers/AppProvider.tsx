@@ -1,4 +1,5 @@
 import { SystemBars } from "react-native-edge-to-edge";
+import { SheetProvider } from "react-native-actions-sheet";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -12,6 +13,7 @@ import {
 import { PortalHost } from "@rn-primitives/portal";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+import { Sheets } from "~/components/action-sheets/sheets";
 import { AuthProvider } from "~/lib/contexts/AuthContext";
 import { NAV_THEME } from "~/lib/theme/constants";
 
@@ -40,11 +42,14 @@ export function AppProvider({
       <PortalHost />
       <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
         <GestureHandlerRootView style={{ flex: 1 }}>
-          <AuthProvider>
-            <SafeAreaProvider>
-              <KeyboardProvider>{children}</KeyboardProvider>
-            </SafeAreaProvider>
-          </AuthProvider>
+          <SheetProvider>
+            <Sheets />
+            <AuthProvider>
+              <SafeAreaProvider>
+                <KeyboardProvider>{children}</KeyboardProvider>
+              </SafeAreaProvider>
+            </AuthProvider>
+          </SheetProvider>
         </GestureHandlerRootView>
       </ThemeProvider>
     </QueryClientProvider>

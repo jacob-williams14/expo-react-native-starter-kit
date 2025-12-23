@@ -36,11 +36,11 @@ export default function HeaderNav({ options }: HeaderNavProps) {
       className="bg-background"
       style={{ ...headerStyles, paddingTop: top }}
     >
-      <View className="w-full h-16 px-6 bg-white">
+      <View className="w-full h-16 px-6 bg-card">
         <View className="absolute top-0 left-0 right-0 bottom-0">
           <View className="flex-1 items-center justify-center">
             {navTitle && (
-              <Large className="text-secondary-900 font-bold">{navTitle}</Large>
+              <Large className="text-foreground font-bold">{navTitle}</Large>
             )}
           </View>
         </View>

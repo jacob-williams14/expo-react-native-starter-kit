@@ -42,15 +42,28 @@ export default (): ExpoConfig => ({
   platforms: ["ios", "android"],
   userInterfaceStyle: "automatic",
   orientation: "portrait",
+  splash: {
+    image: "./assets/images/trans_cream.png",
+    resizeMode: "contain",
+    backgroundColor: "#8ba898",
+  },
   ios: {
     bundleIdentifier,
     appleTeamId: undefined,
     infoPlist: {},
+    icon: {
+      light: "./assets/images/cream_sage.png",
+      dark: "./assets/images/sage_cream.png",
+    },
     // associatedDomains: [],
   },
   android: {
     package: packageName,
     permissions: [],
+    adaptiveIcon: {
+      foregroundImage: "./assets/images/trans_cream.png",
+      backgroundColor: "#8ba898",
+    },
     // intentFilters: [
     //   {
     //     action: "VIEW",
@@ -73,7 +86,7 @@ export default (): ExpoConfig => ({
     [
       "expo-font",
       {
-        fonts: [],
+        fonts: ["./assets/fonts/Inter-Variable.ttf"],
       },
     ],
     [

@@ -17,4 +17,4 @@ if [ "$PLATFORM" != "ios" ] && [ "$PLATFORM" != "android" ]; then
 fi
 
 echo "Building for $PLATFORM..."
-eas build -p "$PLATFORM" --profile development --local
+eas build -p "$PLATFORM" --profile artifact --local
