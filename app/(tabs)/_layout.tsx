@@ -58,7 +58,7 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="toolkit"
         options={{
           title: "Toolkit",
           headerTitle: "Toolkit",

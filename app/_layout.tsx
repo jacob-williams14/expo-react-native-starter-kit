@@ -20,12 +20,12 @@ export const unstable_settings = {
 void SplashScreen.preventAutoHideAsync();
 
 const useInitializeApp = () => {
-  const { setColorScheme, isDarkColorScheme } = useColorScheme();
+  const { colorScheme, setColorScheme, isDarkColorScheme } = useColorScheme();
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     const initializeTheme = async () => {
-      setColorScheme("light");
+      setColorScheme(colorScheme);
     };
 
     void Promise.allSettled([initializeTheme()]).then(() => {

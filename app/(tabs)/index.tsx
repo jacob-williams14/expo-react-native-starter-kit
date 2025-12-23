@@ -75,7 +75,6 @@ export default function GetStartedPage() {
   return (
     <ScrollView className="flex-1 bg-background">
       <View className="px-5 py-6">
-        {/* Welcome Section */}
         <View className="bg-card rounded-2xl p-6 mb-6 border border-border">
           <View className="flex-row items-center mb-3">
             <MaterialCommunityIcons
@@ -91,7 +90,6 @@ export default function GetStartedPage() {
           </P>
         </View>
 
-        {/* Checklist */}
         <View className="bg-card rounded-2xl p-5 border border-border">
           <View className="flex-row items-center mb-4">
             <MaterialCommunityIcons
