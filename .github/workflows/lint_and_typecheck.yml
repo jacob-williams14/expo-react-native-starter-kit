@@ -1,36 +1,31 @@
-name: Disabled Workflow
-on: workflow_dispatch
+name: Lint and Type Check
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  # Also allow this workflow to be called by other workflows
+  workflow_call:
+
 jobs:
-  disabled:
+  lint-and-typecheck:
+    name: Lint and Type Check
     runs-on: ubuntu-latest
     steps:
-      - run: echo "This workflow is disabled"
-# name: Lint and Type Check
-# on:
-#   # Only allow this workflow to be called by other workflows
-#   workflow_call:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-# jobs:
-#   lint-and-typecheck:
-#     name: Lint and Type Check
-#     runs-on: ubuntu-latest
-#     steps:
-#       # TODO: Upgrade checkout action to newer version
-#       - name: Checkout repository
-#         uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: npm
 
-#       # TODO: Upgrade setup action to newer version
-#       - name: Setup Node
-#         uses: actions/setup-node@v4
-#         with:
-#           node-version: 22.x
-#           cache: npm
+      - name: Lint lockfile
+        run: npm run lint:lockfile
 
-#       - name: Lint lockfile
-#         run: npm run lint:lockfile
+      - name: Install dependencies
+        run: npm run setup
 
-#       - name: Install dependencies
-#         run: npm run setup
-
-#       - name: Run lint and type check
-#         run: npm run check
+      - name: Run lint and type check
+        run: npm run check

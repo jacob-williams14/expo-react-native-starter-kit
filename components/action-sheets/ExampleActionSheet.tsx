@@ -1,5 +1,8 @@
-import ActionSheet, { SheetProps , SheetManager } from "react-native-actions-sheet";
 import { View } from "react-native";
+import ActionSheet, {
+  SheetManager,
+  SheetProps,
+} from "react-native-actions-sheet";
 
 import { Button, H3, P, Text } from "~/components/ui";
 
