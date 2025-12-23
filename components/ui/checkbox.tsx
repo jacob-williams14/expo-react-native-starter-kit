@@ -21,7 +21,8 @@ function Checkbox({
     <CheckboxPrimitive.Root
       className={cn(
         "border-input bg-background dark:bg-secondary-800 size-4 shrink-0 rounded-[4px] border shadow-sm shadow-black/5 overflow-hidden",
-        props.checked && cn("border-primary-600 dark:border-primary-500", checkedClassName),
+        props.checked &&
+          cn("border-primary-600 dark:border-primary-500", checkedClassName),
         props.disabled && "opacity-50",
         className
       )}
@@ -38,7 +39,10 @@ function Checkbox({
           name="check"
           size={12}
           color="white"
-          className={cn("text-base-white dark:text-secondary-900", iconClassName)}
+          className={cn(
+            "text-base-white dark:text-secondary-900",
+            iconClassName
+          )}
         />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>

@@ -95,7 +95,11 @@ const DialogContent = React.forwardRef<
             className="absolute right-4 top-4 rounded-sm p-0.5 opacity-70 active:opacity-100"
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <MaterialCommunityIcons name="close" size={18} className="text-foreground" />
+            <MaterialCommunityIcons
+              name="close"
+              size={18}
+              className="text-foreground"
+            />
             <Text className="sr-only">Close</Text>
           </DialogPrimitive.Close>
         </DialogPrimitive.Content>

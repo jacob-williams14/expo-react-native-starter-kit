@@ -1,6 +1,7 @@
 import { Link } from "expo-router";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
+import { Text } from "~/components/ui";
 import { MaterialCommunityIcons } from "~/lib/icons/material-community-icons";
 import { COLORS } from "~/lib/theme/constants";
 
@@ -13,12 +14,8 @@ export default function NotFoundScreen() {
           size={120}
           color={COLORS.primary[500]}
         />
-        <Text className="text-4xl font-bold mt-6 mb-3">
-          404
-        </Text>
-        <Text className="text-xl font-semibold mb-2">
-          Page Not Found
-        </Text>
+        <Text className="text-4xl font-bold mt-6 mb-3">404</Text>
+        <Text className="text-xl font-semibold mb-2">Page Not Found</Text>
         <Text variant="muted" className="text-center mb-8">
           Sorry, we couldn't find the page you're looking for.
         </Text>

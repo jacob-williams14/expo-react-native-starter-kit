@@ -83,9 +83,7 @@ export default function GetStartedPage() {
               size={32}
               color={COLORS.primary[500]}
             />
-            <H3 className="ml-3">
-              Welcome to Your Starter Kit
-            </H3>
+            <H3 className="ml-3">Welcome to Your Starter Kit</H3>
           </View>
           <P className="leading-5">
             This checklist will help you customize and configure your app. Check
@@ -128,9 +126,7 @@ export default function GetStartedPage() {
                   <Text className="text-base font-semibold mb-1">
                     {item.title}
                   </Text>
-                  <Text variant="muted">
-                    {item.description}
-                  </Text>
+                  <Text variant="muted">{item.description}</Text>
                 </View>
               </View>
             ))}
