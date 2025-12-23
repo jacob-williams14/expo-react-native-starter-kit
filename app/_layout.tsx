@@ -69,6 +69,7 @@ export default function RootLayout() {
             title: "Dev Menu",
             headerShadowVisible: false,
             headerLeft: () => <Header.Back />,
+            headerRight: () => <Header.ThemeToggle />,
           }}
         />
       </Stack>

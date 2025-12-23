@@ -44,80 +44,80 @@ export function DesignSystemTab() {
     <ScrollView className="flex-1" contentContainerClassName="gap-4 p-6">
       <CollapsibleGroup title="Typography" contentClassName="gap-4">
         <View className="gap-1">
-          <Small className="text-neutral-500">Heading 1</Small>
+          <Small className="text-muted-foreground">Heading 1</Small>
           <H1>Heading 1</H1>
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Heading 2</Small>
+          <Small className="text-muted-foreground">Heading 2</Small>
           <H2>Heading 2</H2>
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Heading 3</Small>
+          <Small className="text-muted-foreground">Heading 3</Small>
           <H3>Heading 3</H3>
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Heading 4</Small>
+          <Small className="text-muted-foreground">Heading 4</Small>
           <H4>Heading 4</H4>
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Paragraph</Small>
+          <Small className="text-muted-foreground">Paragraph</Small>
           <P>This is paragraph text for body content</P>
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Large</Small>
+          <Small className="text-muted-foreground">Large</Small>
           <Large>Large text for emphasis</Large>
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Small</Small>
+          <Small className="text-muted-foreground">Small</Small>
           <Small>Small text for captions</Small>
         </View>
       </CollapsibleGroup>
 
       <CollapsibleGroup title="Buttons" contentClassName="gap-4">
         <View className="gap-1">
-          <Small className="text-neutral-500">Default</Small>
+          <Small className="text-muted-foreground">Default</Small>
           <Button>
             <Text>Default Button</Text>
           </Button>
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Secondary</Small>
+          <Small className="text-muted-foreground">Secondary</Small>
           <Button variant="secondary">
             <Text>Secondary Button</Text>
           </Button>
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Outline</Small>
+          <Small className="text-muted-foreground">Outline</Small>
           <Button variant="outline">
             <Text>Outline Button</Text>
           </Button>
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Ghost</Small>
+          <Small className="text-muted-foreground">Ghost</Small>
           <Button variant="ghost">
             <Text>Ghost Button</Text>
           </Button>
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Destructive</Small>
+          <Small className="text-muted-foreground">Destructive</Small>
           <Button variant="destructive">
             <Text>Destructive Button</Text>
           </Button>
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Link</Small>
+          <Small className="text-muted-foreground">Link</Small>
           <Button variant="link">
             <Text>Link Button</Text>
           </Button>
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Small Size</Small>
+          <Small className="text-muted-foreground">Small Size</Small>
           <Button size="sm">
             <Text>Small Button</Text>
           </Button>
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Disabled</Small>
+          <Small className="text-muted-foreground">Disabled</Small>
           <Button disabled>
             <Text>Disabled Button</Text>
           </Button>
@@ -126,15 +126,15 @@ export function DesignSystemTab() {
 
       <CollapsibleGroup title="Inputs" contentClassName="gap-4">
         <View className="gap-1">
-          <Small className="text-neutral-500">Default</Small>
+          <Small className="text-muted-foreground">Default</Small>
           <Input placeholder="Enter text..." />
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">With Label</Small>
+          <Small className="text-muted-foreground">With Label</Small>
           <Input placeholder="Enter text..." label="Custom Label" />
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">With Helper Text</Small>
+          <Small className="text-muted-foreground">With Helper Text</Small>
           <Input
             placeholder="Enter your email"
             label="Email"
@@ -159,7 +159,7 @@ export function DesignSystemTab() {
 
       <CollapsibleGroup title="Selects" contentClassName="gap-4">
         <View className="gap-1">
-          <Small className="text-neutral-500">Default</Small>
+          <Small className="text-muted-foreground">Default</Small>
           <SelectField
             items={[
               { label: "Option 1", value: "option1" },
@@ -172,7 +172,7 @@ export function DesignSystemTab() {
           />
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">With Label</Small>
+          <Small className="text-muted-foreground">With Label</Small>
           <SelectField
             label="Choose Option"
             items={[
@@ -184,7 +184,7 @@ export function DesignSystemTab() {
           />
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">With Disabled Option</Small>
+          <Small className="text-muted-foreground">With Disabled Option</Small>
           <SelectField
             items={[
               { label: "Enabled", value: "enabled" },
@@ -198,7 +198,7 @@ export function DesignSystemTab() {
 
       <CollapsibleGroup title="Checkboxes" contentClassName="gap-4">
         <View className="gap-1">
-          <Small className="text-neutral-500">Default</Small>
+          <Small className="text-muted-foreground">Default</Small>
           <View className="flex-row items-center gap-3">
             <Checkbox
               checked={checkboxChecked}
@@ -208,7 +208,7 @@ export function DesignSystemTab() {
           </View>
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Disabled</Small>
+          <Small className="text-muted-foreground">Disabled</Small>
           <View className="flex-row items-center gap-3">
             <Checkbox disabled checked={false} onCheckedChange={() => {}} />
             <Text className="text-neutral-400">Disabled checkbox</Text>
@@ -218,20 +218,20 @@ export function DesignSystemTab() {
 
       <CollapsibleGroup title="Switches" contentClassName="gap-4">
         <View className="gap-1">
-          <Small className="text-neutral-500">Default (no label)</Small>
+          <Small className="text-muted-foreground">Default (no label)</Small>
           <Switch
             checked={switchChecked1}
             onCheckedChange={setSwitchChecked1}
           />
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">With Label</Small>
+          <Small className="text-muted-foreground">With Label</Small>
           <Switch checked={switchChecked2} onCheckedChange={setSwitchChecked2}>
             <Text>Enable notifications</Text>
           </Switch>
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Disabled</Small>
+          <Small className="text-muted-foreground">Disabled</Small>
           <Switch disabled checked={false} onCheckedChange={() => {}}>
             <Text className="text-neutral-400">Disabled</Text>
           </Switch>
@@ -240,13 +240,13 @@ export function DesignSystemTab() {
 
       <CollapsibleGroup title="Toggles" contentClassName="gap-4">
         <View className="gap-1">
-          <Small className="text-neutral-500">Default</Small>
+          <Small className="text-muted-foreground">Default</Small>
           <Toggle pressed={togglePressed1} onPressedChange={setTogglePressed1}>
             <Text>Toggle me</Text>
           </Toggle>
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">With Icon</Small>
+          <Small className="text-muted-foreground">With Icon</Small>
           <Toggle pressed={togglePressed2} onPressedChange={setTogglePressed2}>
             <MaterialCommunityIcons
               name="star"
@@ -259,7 +259,7 @@ export function DesignSystemTab() {
           </Toggle>
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Outline Variant</Small>
+          <Small className="text-muted-foreground">Outline Variant</Small>
           <Toggle
             variant="outline"
             pressed={togglePressed3}
@@ -269,7 +269,7 @@ export function DesignSystemTab() {
           </Toggle>
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Disabled</Small>
+          <Small className="text-muted-foreground">Disabled</Small>
           <Toggle disabled pressed={false} onPressedChange={() => {}}>
             <Text>Disabled</Text>
           </Toggle>
@@ -278,7 +278,7 @@ export function DesignSystemTab() {
 
       <CollapsibleGroup title="Toggle Groups" contentClassName="gap-4">
         <View className="gap-1">
-          <Small className="text-neutral-500">Single Select</Small>
+          <Small className="text-muted-foreground">Single Select</Small>
           <SingleSelectToggleGroup
             value={singleToggleValue}
             onValueChange={(value) => value && setSingleToggleValue(value)}
@@ -293,7 +293,7 @@ export function DesignSystemTab() {
 
       <CollapsibleGroup title="Dialogs" contentClassName="gap-4">
         <View className="gap-1">
-          <Small className="text-neutral-500">Default Dialog</Small>
+          <Small className="text-muted-foreground">Default Dialog</Small>
           <Button onPress={() => setDialogOpen(true)}>
             <Text>Open Dialog</Text>
           </Button>
@@ -314,7 +314,7 @@ export function DesignSystemTab() {
           />
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Destructive Dialog</Small>
+          <Small className="text-muted-foreground">Destructive Dialog</Small>
           <Button
             variant="destructive"
             onPress={() => setDestructiveDialogOpen(true)}
@@ -347,7 +347,7 @@ export function DesignSystemTab() {
 
       <CollapsibleGroup title="Tabs" contentClassName="gap-4">
         <View className="gap-1">
-          <Small className="text-neutral-500">Default Variant</Small>
+          <Small className="text-muted-foreground">Default Variant</Small>
           <TabGroup
             tabs={[
               {
@@ -380,11 +380,11 @@ export function DesignSystemTab() {
             ]}
             defaultValue="tab1"
             showContent={true}
-            tabBackgroundColor="bg-white"
+            tabBackgroundColor="bg-card"
           />
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Outlined Variant</Small>
+          <Small className="text-muted-foreground">Outlined Variant</Small>
           <TabGroup
             tabs={[
               { value: "a", label: "Option A" },
@@ -393,11 +393,12 @@ export function DesignSystemTab() {
             ]}
             defaultValue="a"
             variant="outlined"
-            tabBackgroundColor="bg-white"
+            showContent={false}
+            tabBackgroundColor="bg-card"
           />
         </View>
         <View className="gap-1">
-          <Small className="text-neutral-500">Filled Variant</Small>
+          <Small className="text-muted-foreground">Filled Variant</Small>
           <TabGroup
             tabs={[
               { value: "x", label: "Choice X" },
@@ -406,13 +407,14 @@ export function DesignSystemTab() {
             ]}
             defaultValue="x"
             variant="filled"
+            showContent={false}
           />
         </View>
       </CollapsibleGroup>
 
       <CollapsibleGroup title="Action Sheets" contentClassName="gap-4">
         <View className="gap-1">
-          <Small className="text-neutral-500">Bottom Sheet</Small>
+          <Small className="text-muted-foreground">Bottom Sheet</Small>
           <Button
             onPress={() => {
               void SheetManager.show("example-sheet");

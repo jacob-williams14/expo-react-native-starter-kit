@@ -121,7 +121,7 @@ const SelectField = ({
         >
           <Text
             variant="p"
-            className="text-base text-neutral-600 font-poppins-medium"
+            className="text-base text-foreground font-poppins-medium"
           >
             {value?.label || placeholder}
           </Text>
@@ -129,7 +129,7 @@ const SelectField = ({
             name="chevron-down"
             size={16}
             aria-hidden={true}
-            className="text-neutral-600"
+            className="text-foreground"
           />
         </TouchableOpacity>
       </View>
@@ -155,13 +155,13 @@ const SelectField = ({
                 <MaterialCommunityIcons
                   name="check"
                   size={16}
-                  className="text-neutral-600"
+                  className="text-foreground"
                 />
               )}
             </View>
             <Text
               variant="p"
-              className="text-base text-neutral-600 font-poppins-medium pl-6"
+              className="text-base text-foreground font-poppins-medium pl-6"
             >
               {item.label}
             </Text>
