@@ -21,9 +21,9 @@ const FullWindowOverlay =
 
 const dialogVariants = {
   default: {
-    title: "text-primary-900",
-    description: "text-neutral-600",
-    followUpMessage: "text-neutral-600 font-bold",
+    title: "text-primary-900 dark:text-primary-300",
+    description: "text-neutral-600 dark:text-neutral-300",
+    followUpMessage: "text-neutral-600 dark:text-neutral-300 font-bold",
     confirmButton: {
       variant: "default" as const,
     },
@@ -32,9 +32,9 @@ const dialogVariants = {
     },
   },
   destructive: {
-    title: "text-base-red",
-    description: "text-neutral-600",
-    followUpMessage: "text-neutral-600 font-bold",
+    title: "text-tertiary-700 dark:text-tertiary-400",
+    description: "text-neutral-600 dark:text-neutral-300",
+    followUpMessage: "text-neutral-600 dark:text-neutral-300 font-bold",
     confirmButton: {
       variant: "destructive" as const,
     },
@@ -85,7 +85,7 @@ const DialogContent = React.forwardRef<
         <DialogPrimitive.Content
           ref={ref}
           className={cn(
-            "w-[350px] gap-6 rounded-xl border border-neutral-200 bg-base-white px-12 py-6 shadow-lg",
+            "w-[350px] gap-6 rounded-xl border border-neutral-200 dark:border-secondary-600 bg-base-white dark:bg-secondary-800 px-12 py-6 shadow-lg",
             className
           )}
           {...props}
@@ -95,7 +95,7 @@ const DialogContent = React.forwardRef<
             className="absolute right-4 top-4 rounded-sm p-0.5 opacity-70 active:opacity-100"
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <MaterialCommunityIcons name="close" size={18} color="#000" />
+            <MaterialCommunityIcons name="close" size={18} className="text-foreground" />
             <Text className="sr-only">Close</Text>
           </DialogPrimitive.Close>
         </DialogPrimitive.Content>

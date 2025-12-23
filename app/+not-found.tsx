@@ -13,13 +13,13 @@ export default function NotFoundScreen() {
           size={120}
           color={COLORS.primary[500]}
         />
-        <Text className="text-4xl font-bold text-secondary-900 mt-6 mb-3">
+        <Text className="text-4xl font-bold mt-6 mb-3">
           404
         </Text>
-        <Text className="text-xl font-semibold text-secondary-700 mb-2">
+        <Text className="text-xl font-semibold mb-2">
           Page Not Found
         </Text>
-        <Text className="text-base text-neutral-600 text-center mb-8">
+        <Text variant="muted" className="text-center mb-8">
           Sorry, we couldn't find the page you're looking for.
         </Text>
         <Link href="/(tabs)" className="bg-primary-500 px-8 py-4 rounded-xl">

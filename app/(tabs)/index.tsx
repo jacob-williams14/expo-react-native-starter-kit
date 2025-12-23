@@ -83,11 +83,11 @@ export default function GetStartedPage() {
               size={32}
               color={COLORS.primary[500]}
             />
-            <H3 className="text-foreground ml-3">
+            <H3 className="ml-3">
               Welcome to Your Starter Kit
             </H3>
           </View>
-          <P className="text-muted-foreground leading-5">
+          <P className="leading-5">
             This checklist will help you customize and configure your app. Check
             out the Toolkit tab to explore what's included.
           </P>
@@ -101,7 +101,7 @@ export default function GetStartedPage() {
               size={22}
               color={COLORS.primary[500]}
             />
-            <Text className="text-lg font-bold text-foreground ml-2">
+            <Text className="text-lg font-bold ml-2">
               Getting Started Checklist
             </Text>
           </View>
@@ -125,10 +125,10 @@ export default function GetStartedPage() {
                   />
                 </View>
                 <View className="flex-1">
-                  <Text className="text-base font-semibold text-foreground mb-1">
+                  <Text className="text-base font-semibold mb-1">
                     {item.title}
                   </Text>
-                  <Text className="text-sm text-muted-foreground">
+                  <Text variant="muted">
                     {item.description}
                   </Text>
                 </View>

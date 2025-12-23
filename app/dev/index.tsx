@@ -1,10 +1,13 @@
 import { View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { DesignSystemTab } from "~/components/dev/DesignTab";
 import { GeneralTab } from "~/components/dev/GeneralTab";
 import { TabGroup } from "~/components/ui";
 
 export default function DevComponentScreen() {
+  const { bottom } = useSafeAreaInsets();
+
   const tabs = [
     {
       value: "general",
@@ -19,7 +22,7 @@ export default function DevComponentScreen() {
   ];
 
   return (
-    <View className="flex-1 bg-background">
+    <View className="flex-1 bg-background" style={{ paddingBottom: bottom }}>
       <TabGroup
         tabs={tabs}
         defaultValue="general"

@@ -9,11 +9,11 @@ import { cn } from "~/lib/tailwindUtils";
 const radioGroupVariants = {
   default: {
     base: "border-2 border-input",
-    indicator: "bg-neutral-400",
+    indicator: "bg-primary-600 dark:bg-primary-500",
   },
   interaction: {
-    base: "border-2 border-interaction-200",
-    indicator: "bg-interaction-200",
+    base: "border-2 border-primary-500 dark:border-primary-400",
+    indicator: "bg-primary-600 dark:bg-primary-500",
   },
 };
 
