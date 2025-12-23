@@ -12,9 +12,9 @@ const inputVariants = cva(
     variants: {
       variant: {
         default:
-          "border-input bg-background dark:bg-input/30 text-foreground placeholder:text-muted-foreground focus:border-ring",
+          "border-input bg-background dark:bg-secondary-800 text-foreground placeholder:text-neutral-500 dark:placeholder:text-neutral-400 focus:border-ring",
         destructive:
-          "border-2 border-destructive bg-destructive/10 placeholder:text-destructive/70",
+          "border-2 border-destructive bg-tertiary-50 dark:bg-tertiary-900/20 text-foreground placeholder:text-destructive/70",
       },
       size: {
         default: "h-10 px-3 py-1 text-base leading-5 sm:h-9 md:text-sm",
@@ -83,8 +83,7 @@ const Input = React.forwardRef<
               variant,
               size,
             }),
-            disabled && "bg-neutral-100 text-neutral-500 border-neutral-200",
-            "placeholder:text-muted-foreground/50",
+            disabled && "bg-muted text-muted-foreground border-border",
             inputClassName
           )}
           editable={!disabled}

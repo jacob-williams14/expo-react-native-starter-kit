@@ -28,7 +28,9 @@ function Switch({ className, children, ...props }: SwitchProps) {
       <SwitchPrimitives.Root
         className={cn(
           "flex-row h-8 w-[60px] shrink-0 items-center rounded-full border-2 border-transparent",
-          props.checked ? "bg-secondary-900" : "bg-neutral-200",
+          props.checked
+            ? "bg-primary-600 dark:bg-primary-500"
+            : "bg-neutral-200 dark:bg-neutral-700",
           className
         )}
         accessibilityRole="switch"

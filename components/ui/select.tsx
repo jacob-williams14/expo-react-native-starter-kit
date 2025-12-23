@@ -146,7 +146,7 @@ const SelectField = ({
               }
             }}
             className={cn(
-              "relative flex flex-row w-full items-center rounded-sm py-3 px-3 active:bg-interaction-100",
+              "relative flex flex-row w-full items-center rounded-sm py-3 px-3 active:bg-primary-50 dark:active:bg-primary-900/30",
               item.disabled && "opacity-50"
             )}
           >

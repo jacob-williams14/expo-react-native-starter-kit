@@ -1,3 +1,4 @@
+import { cva, VariantProps } from "class-variance-authority";
 import * as React from "react";
 import { View, ViewStyle } from "react-native";
 
@@ -20,46 +21,129 @@ const TabsList = React.forwardRef<
 ));
 TabsList.displayName = TabsPrimitive.List.displayName;
 
+const tabsTriggerVariants = cva(
+  "inline-flex text-center items-center justify-center p-3 shadow-none flex-1",
+  {
+    variants: {
+      variant: {
+        default: "",
+        outlined: "",
+        filled: "",
+      },
+      selected: {
+        true: "",
+        false: "",
+      },
+    },
+    compoundVariants: [
+      {
+        variant: "default",
+        selected: true,
+        className: "border-b-2 border-b-primary-600 dark:border-b-primary-500",
+      },
+      {
+        variant: "default",
+        selected: false,
+        className: "border-b-2 border-b-transparent",
+      },
+      {
+        variant: "outlined",
+        selected: true,
+        className:
+          "border-2 border-primary-600 dark:border-primary-500 bg-primary-50 dark:bg-secondary-600 rounded-full",
+      },
+      {
+        variant: "outlined",
+        selected: false,
+        className: "border-2 border-transparent rounded-full",
+      },
+      {
+        variant: "filled",
+        selected: true,
+        className:
+          "border-none rounded-full bg-primary-600 dark:bg-primary-500",
+      },
+      {
+        variant: "filled",
+        selected: false,
+        className: "border-none rounded-full",
+      },
+    ],
+    defaultVariants: {
+      variant: "default",
+      selected: false,
+    },
+  }
+);
+
+const tabsTriggerTextVariants = cva("text-base", {
+  variants: {
+    variant: {
+      default: "",
+      outlined: "",
+      filled: "",
+    },
+    selected: {
+      true: "",
+      false: "",
+    },
+  },
+  compoundVariants: [
+    {
+      variant: "default",
+      selected: true,
+      className: "text-primary-700 dark:text-primary-300",
+    },
+    {
+      variant: "default",
+      selected: false,
+      className: "text-neutral-600 dark:text-neutral-400",
+    },
+    {
+      variant: "outlined",
+      selected: true,
+      className: "text-primary-700 dark:text-primary-300",
+    },
+    {
+      variant: "outlined",
+      selected: false,
+      className: "text-neutral-600 dark:text-neutral-400",
+    },
+    {
+      variant: "filled",
+      selected: true,
+      className: "text-base-white dark:text-secondary-900",
+    },
+    {
+      variant: "filled",
+      selected: false,
+      className: "text-neutral-600 dark:text-neutral-400",
+    },
+  ],
+  defaultVariants: {
+    variant: "default",
+    selected: false,
+  },
+});
+
 const TabsTrigger = React.forwardRef<
   TabsPrimitive.TriggerRef,
-  TabsPrimitive.TriggerProps & {
-    variant?: "default" | "outlined" | "filled";
-  }
+  TabsPrimitive.TriggerProps & VariantProps<typeof tabsTriggerVariants>
 >(({ className, variant = "default", ...props }, ref) => {
   const { value } = TabsPrimitive.useRootContext();
   const isSelected = props.value === value;
 
-  let variantStyles = "";
-  switch (variant) {
-    case "default":
-      variantStyles = isSelected
-        ? "border-b-2 border-b-primary"
-        : "border-b-2 border-b-transparent";
-      break;
-    case "outlined":
-      variantStyles = isSelected
-        ? "border-2 border-primary bg-primary/10 rounded-full"
-        : "border-2 border-transparent rounded-full";
-      break;
-    case "filled":
-      variantStyles = isSelected
-        ? "border-none rounded-full bg-primary"
-        : "border-none rounded-full";
-      break;
-  }
-
   return (
     <TextClassContext.Provider
       value={cn(
-        "text-base",
+        tabsTriggerTextVariants({ variant, selected: isSelected }),
         props.disabled && "text-muted-foreground opacity-50"
       )}
     >
       <TabsPrimitive.Trigger
         ref={ref}
         className={cn(
-          "inline-flex text-center items-center justify-center p-3 shadow-none flex-1",
-          variantStyles,
+          tabsTriggerVariants({ variant, selected: isSelected }),
           className
         )}
         {...props}

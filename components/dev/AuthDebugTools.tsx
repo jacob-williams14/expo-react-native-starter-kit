@@ -65,7 +65,7 @@ export function AuthDebugTools() {
         {isAuthenticated ? "✅ Authenticated" : "❌ Not authenticated"}
       </P>
       {user && (
-        <P className="mb-2 text-xs text-neutral-600">
+        <P className="mb-2 text-xs">
           Email: {user.email} | Name: {user.name}
         </P>
       )}
@@ -80,15 +80,15 @@ export function AuthDebugTools() {
       </View>
 
       {error && (
-        <View className="bg-red-100 p-3 rounded-md mb-4">
-          <P className="text-red-800">{error}</P>
+        <View className="bg-red-100 dark:bg-red-900/20 p-3 rounded-md mb-4">
+          <P className="text-red-800 dark:text-red-200">{error}</P>
         </View>
       )}
 
       {apiResponse && (
         <View>
           <P className="font-bold mb-1">Response:</P>
-          <View className="bg-gray-100 p-3 rounded-md">
+          <View className="bg-muted p-3 rounded-md border border-border">
             <P className="font-mono text-xs">{apiResponse}</P>
           </View>
         </View>

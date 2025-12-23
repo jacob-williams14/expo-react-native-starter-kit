@@ -43,7 +43,7 @@ export default (): ExpoConfig => ({
   userInterfaceStyle: "automatic",
   orientation: "portrait",
   splash: {
-    image: "./assets/images/trans_cream.png",
+    image: "./assets/images/splash-cream-transparent.png",
     resizeMode: "contain",
     backgroundColor: "#8ba898",
   },
@@ -52,8 +52,8 @@ export default (): ExpoConfig => ({
     appleTeamId: undefined,
     infoPlist: {},
     icon: {
-      light: "./assets/images/cream_sage.png",
-      dark: "./assets/images/sage_cream.png",
+      light: "./assets/images/ios-icon-light.png",
+      dark: "./assets/images/ios-icon-dark.png",
     },
     // associatedDomains: [],
   },
@@ -61,7 +61,7 @@ export default (): ExpoConfig => ({
     package: packageName,
     permissions: [],
     adaptiveIcon: {
-      foregroundImage: "./assets/images/trans_cream.png",
+      foregroundImage: "./assets/images/android-icon-foreground-light.png",
       backgroundColor: "#8ba898",
     },
     // intentFilters: [

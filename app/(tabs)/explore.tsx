@@ -78,9 +78,9 @@ export default function ToolkitPage() {
               size={32}
               color={COLORS.primary[500]}
             />
-            <H3 className="text-foreground ml-3">What's Included</H3>
+            <H3 className="ml-3">What's Included</H3>
           </View>
-          <P className="text-muted-foreground leading-5">
+          <P className="leading-5">
             This starter kit comes with everything you need to build a
             production-ready React Native app.
           </P>
@@ -111,10 +111,10 @@ export default function ToolkitPage() {
                   />
                 </View>
                 <View className="flex-1">
-                  <Text className="text-base font-bold text-foreground mb-1">
+                  <Text className="text-base font-bold mb-1">
                     {feature.title}
                   </Text>
-                  <Text className="text-sm text-muted-foreground leading-5">
+                  <Text variant="muted" className="leading-5">
                     {feature.description}
                   </Text>
                 </View>

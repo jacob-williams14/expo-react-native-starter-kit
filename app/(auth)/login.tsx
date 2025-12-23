@@ -2,9 +2,7 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import { View } from "react-native";
 
-import { Button } from "~/components/ui/button";
-import { Input } from "~/components/ui/input";
-import { H1, P } from "~/components/ui/text";
+import { Button, H1, Input, P } from "~/components/ui";
 import { useAuth } from "~/lib/contexts/AuthContext";
 
 export default function LoginScreen() {
@@ -38,9 +36,7 @@ export default function LoginScreen() {
     <View className="flex-1 bg-background px-6 justify-center">
       <View className="mb-8">
         <H1 className="text-center mb-2">Welcome</H1>
-        <P className="text-center text-neutral-600">
-          Sign in or create an account to continue
-        </P>
+        <P className="text-center">Sign in or create an account to continue</P>
       </View>
 
       <View className="gap-4">
@@ -71,8 +67,8 @@ export default function LoginScreen() {
         </View>
 
         {error && (
-          <View className="bg-red-100 p-3 rounded-md">
-            <P className="text-red-800 text-sm">{error}</P>
+          <View className="bg-red-100 dark:bg-red-900/20 p-3 rounded-md">
+            <P className="text-red-800 dark:text-red-200 text-sm">{error}</P>
           </View>
         )}
 
@@ -81,7 +77,7 @@ export default function LoginScreen() {
             onPress={handleSignIn}
             disabled={isLoading || !email || !password}
           >
-            <P className="text-white font-medium">Sign In</P>
+            <P>Sign In</P>
           </Button>
 
           <Button
@@ -89,12 +85,12 @@ export default function LoginScreen() {
             onPress={handleGuestLogin}
             disabled={isLoading}
           >
-            <P className="font-medium">Continue as Guest</P>
+            <P>Continue as Guest</P>
           </Button>
         </View>
 
         <View className="mt-4">
-          <P className="text-xs text-neutral-500 text-center">
+          <P className="text-center">
             This is a demo auth flow with fake tokens stored in Expo Secure
             Store. Any email/password will work.
           </P>

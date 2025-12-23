@@ -11,13 +11,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary-500 active:bg-primary-600",
-        secondary: "bg-tertiary-300 active:bg-tertiary-200",
+        default:
+          "bg-primary-600 active:bg-primary-700 dark:bg-primary-500 dark:active:bg-primary-600",
+        secondary:
+          "bg-secondary-600 active:bg-secondary-700 dark:bg-secondary-500 dark:active:bg-secondary-600",
         outline:
-          "border border-input bg-base-white border-primary-300 active:bg-primary-50 active:border-primary-500",
-        ghost: "active:bg-neutral-100",
-        destructive: "bg-primary-600 active:bg-primary-700",
-        link: "rounded-md border-2 border-transparent active:bg-secondary-50 disabled:border-transparent disabled:bg-transparent",
+          "border border-input bg-transparent border-primary-500 active:bg-primary-50 dark:border-primary-400 dark:active:bg-secondary-600",
+        ghost: "active:bg-neutral-100 dark:active:bg-neutral-700",
+        destructive:
+          "bg-tertiary-600 active:bg-tertiary-700 dark:bg-tertiary-500 dark:active:bg-tertiary-600",
+        link: "rounded-md border-2 border-transparent active:bg-primary-50 dark:active:bg-neutral-700 disabled:border-transparent disabled:bg-transparent",
       },
       size: {
         default: "min-h-[48px] px-4 py-3",
@@ -35,12 +38,12 @@ const buttonVariants = cva(
 const buttonTextVariants = cva("text-base text-foreground", {
   variants: {
     variant: {
-      default: "text-base-white",
-      secondary: "text-secondary-900",
-      outline: "text-primary-600",
+      default: "text-base-white dark:text-secondary-900",
+      secondary: "text-base-white dark:text-neutral-50",
+      outline: "text-primary-700 dark:text-primary-300",
       ghost: "text-foreground",
-      destructive: "text-base-white",
-      link: "text-secondary-900 underline",
+      destructive: "text-base-white dark:text-secondary-900",
+      link: "text-primary-700 dark:text-primary-300 underline",
     },
     size: {
       default: "text-lg",

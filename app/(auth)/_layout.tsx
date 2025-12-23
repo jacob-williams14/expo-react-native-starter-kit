@@ -1,6 +1,9 @@
 import { Stack } from "expo-router";
 
+import { NativeStackHeaderProps } from "@react-navigation/native-stack";
+
 import { Header } from "~/components/navigation/HeaderButton";
+import HeaderNav from "~/components/navigation/HeaderNav";
 
 export default function AuthLayout() {
   return (
@@ -8,6 +11,7 @@ export default function AuthLayout() {
       screenOptions={{
         headerShown: true,
         headerShadowVisible: false,
+        header: (props: NativeStackHeaderProps) => <HeaderNav {...props} />,
         headerRight: () => <Header.ThemeToggle />,
       }}
     >
