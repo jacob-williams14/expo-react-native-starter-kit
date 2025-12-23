@@ -13,18 +13,21 @@ const toolkitFeatures: Array<{
   description: string;
   icon: MaterialCommunityIconName;
   route: string | null;
+  tab?: string;
 }> = [
-  {
-    title: "Design System",
-    description: "Complete UI component library with NativeWind styling",
-    icon: "palette",
-    route: "/dev",
-  },
   {
     title: "Dev Tools",
     description: "Built-in development utilities and debugging tools",
     icon: "hammer-wrench",
     route: "/dev",
+    tab: "general",
+  },
+  {
+    title: "Design System",
+    description: "Complete UI component library with NativeWind styling",
+    icon: "palette",
+    route: "/dev",
+    tab: "design",
   },
   {
     title: "Authentication",
@@ -70,7 +73,6 @@ export default function ToolkitPage() {
   return (
     <ScrollView className="flex-1 bg-background">
       <View className="px-5 py-6">
-        {/* Header Section */}
         <View className="bg-card rounded-2xl p-6 mb-6 border border-border">
           <View className="flex-row items-center mb-3">
             <MaterialCommunityIcons
@@ -86,7 +88,6 @@ export default function ToolkitPage() {
           </P>
         </View>
 
-        {/* Features Grid */}
         <View className="gap-3">
           {toolkitFeatures.map((feature, index) => (
             <TouchableOpacity
@@ -95,7 +96,10 @@ export default function ToolkitPage() {
               activeOpacity={feature.route ? 0.7 : 1}
               onPress={() => {
                 if (feature.route) {
-                  router.push(feature.route);
+                  router.push({
+                    pathname: feature.route,
+                    params: feature.tab ? { tab: feature.tab } : undefined,
+                  });
                 }
               }}
             >

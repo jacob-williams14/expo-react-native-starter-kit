@@ -1,3 +1,4 @@
+import { useLocalSearchParams } from "expo-router";
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -7,6 +8,7 @@ import { TabGroup } from "~/components/ui";
 
 export default function DevComponentScreen() {
   const { bottom } = useSafeAreaInsets();
+  const { tab } = useLocalSearchParams<{ tab?: string }>();
 
   const tabs = [
     {
@@ -25,7 +27,7 @@ export default function DevComponentScreen() {
     <View className="flex-1 bg-background" style={{ paddingBottom: bottom }}>
       <TabGroup
         tabs={tabs}
-        defaultValue="general"
+        defaultValue={tab || "general"}
         showContent={true}
         showTabShadow
         tabBackgroundColor="bg-transparent"
