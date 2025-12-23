@@ -7,7 +7,7 @@ import { TextClassContext } from "./text";
 import { cn } from "~/lib/tailwindUtils";
 
 const buttonVariants = cva(
-  "group flex items-center justify-center rounded-full disabled:bg-neutral-200",
+  "group flex items-center justify-center rounded-full disabled:bg-muted",
   {
     variants: {
       variant: {
@@ -38,7 +38,7 @@ const buttonTextVariants = cva("text-base text-foreground", {
       default: "text-base-white",
       secondary: "text-secondary-900",
       outline: "text-primary-600",
-      ghost: "text-secondary-900",
+      ghost: "text-foreground",
       destructive: "text-base-white",
       link: "text-secondary-900 underline",
     },
@@ -65,9 +65,9 @@ const Button = React.forwardRef<
     <TextClassContext.Provider
       value={cn(
         props.disabled
-          ? "text-neutral-900"
+          ? "text-muted-foreground"
           : buttonTextVariants({ variant, size }),
-        props.disabled && variant === "link" && "text-neutral-600"
+        props.disabled && variant === "link" && "text-muted-foreground"
       )}
     >
       <Pressable

@@ -46,7 +46,6 @@ export default function Layout() {
         options={{
           title: "Get Started",
           headerTitle: "Get Started",
-          headerLeft: () => <Header.Profile />,
           headerRight: () => <Header.ThemeToggle />,
           headerShadowVisible: false,
           tabBarIcon: ({ color, focused }) => (
@@ -63,6 +62,7 @@ export default function Layout() {
         options={{
           title: "Toolkit",
           headerTitle: "Toolkit",
+          headerRight: () => <Header.ThemeToggle />,
           headerShadowVisible: false,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons

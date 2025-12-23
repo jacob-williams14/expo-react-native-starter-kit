@@ -5,10 +5,17 @@ import ActionSheet, {
 } from "react-native-actions-sheet";
 
 import { Button, H3, P, Text } from "~/components/ui";
+import { useThemeColors } from "~/hooks/useThemeColors";
 
 function ExampleActionSheet(props: SheetProps<"example-sheet">) {
+  const colors = useThemeColors();
+
   return (
-    <ActionSheet id={props.sheetId} gestureEnabled>
+    <ActionSheet
+      id={props.sheetId}
+      gestureEnabled
+      containerStyle={{ backgroundColor: colors.card }}
+    >
       <View className="p-6 gap-4">
         <H3>Choose an Action</H3>
         <P className="text-muted-foreground">
